@@ -1,0 +1,47 @@
+@import '../../../App.variables.scss';
+
+.item {
+  max-width: 30%;
+  background-color: rgba(250, 250, 250, 0.3);
+  border-radius: 8px;
+  transition: all 0.5s ease-in;
+
+  &:hover {
+    background-color: #fff;
+  }
+
+  .item-img {
+    width: 100%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  .item-body {
+    padding: 14px 16px;
+    color: $brown;
+
+    .item-title {
+      margin-bottom: 12px;
+      font-weight: bold;
+
+      span {
+        font-weight: normal;
+        font-style: italic;
+      }
+    }
+
+    .item-desc {
+      margin-bottom: 6px;
+      font-size: $descr-font;
+      line-height: 18px;
+      opacity: 0.65;
+
+      &.desc-protect {
+        margin-bottom: 10px;
+        font-weight: normal;
+        font-style: italic;
+        color: $dark-green;
+      }
+    }
+  }
+}

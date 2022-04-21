@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+::-webkit-scrollbar {
+  width: 0;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -19,12 +23,17 @@ body {
 }
 
 a {
+  font-family: inherit;
   color: #000;
   text-decoration: none;
 
   &:focus {
     outline: none;
   }
+}
+
+button {
+  font-family: inherit;
 }
 
 .center-container {

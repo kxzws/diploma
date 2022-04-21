@@ -4,4 +4,17 @@
   padding: 30px 0;
   min-height: $min-height;
   background-color: $dark-grey;
+
+  .btns-container {
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .items-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 40px;
+  }
 }

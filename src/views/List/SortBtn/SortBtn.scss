@@ -1,0 +1,12 @@
+@import '../../../App.variables.scss';
+
+.sort-btn {
+  font-size: $subtitle-font;
+  color: $brown;
+  background-color: transparent;
+  border: none;
+
+  &.btn-active {
+    border-bottom: 2px solid $brown;
+  }
+}
