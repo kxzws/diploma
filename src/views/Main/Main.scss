@@ -3,5 +3,55 @@
 .main {
   padding: 25px 0;
   min-height: $min-height;
-  background-color: $dark-grey;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+  background: $dark-grey center/cover url('./bg-img.jpg') no-repeat;
+
+  .main-title {
+    margin: 0 auto;
+    margin-top: 8%;
+    padding: 30px 40px;
+    max-width: 70%;
+    text-align: center;
+    background-color: rgba($brown, 0.88);
+    border-radius: 15px;
+
+    .main-subtitle {
+      margin-bottom: 20px;
+      font-size: $subtitle-font;
+      line-height: 24px;
+      text-align: justify;
+    }
+
+    a {
+      margin: 0 auto;
+      padding: 13px 36px;
+      width: 216px;
+      display: block;
+      font-size: $title-font - 2px;
+      font-weight: normal;
+      color: $brown;
+      background-color: $light-brown;
+      border-radius: 12px;
+
+      &:hover {
+        animation: bouncing 0.8s infinite alternate;
+      }
+
+      &:active {
+        animation: none;
+        transform: scale(0.95);
+      }
+
+      @keyframes bouncing {
+        from {
+          transform: scale(1);
+        }
+        to {
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
 }
