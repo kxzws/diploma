@@ -1,0 +1,19 @@
+@import './../../App.variables.scss';
+
+.footer {
+  padding: 20px 0;
+  font-size: $subtitle-font;
+  font-weight: 300;
+  color: #fff;
+  text-align: center;
+  background-color: $brown;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+
+    a {
+      color: #fff;
+    }
+  }
+}

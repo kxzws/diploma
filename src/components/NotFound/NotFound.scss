@@ -1,0 +1,18 @@
+@import '../../App.variables.scss';
+
+.not-found {
+  padding: 120px 0;
+  min-height: $min-height;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  background-color: $dark-grey;
+
+  h2 {
+    font-size: $header * 3;
+  }
+
+  p {
+    font-size: $big-title;
+  }
+}

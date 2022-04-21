@@ -1,0 +1,19 @@
+@import '../../App.variables.scss';
+
+.header {
+  padding: 20px 0;
+  font-size: $subtitle-font;
+  color: #fff;
+  background-color: $brown;
+
+  a {
+    margin-right: 30px;
+    font-size: $title-font;
+    color: #fff;
+    opacity: .65;
+
+    &.active-link {
+      opacity: 1;
+    }
+  }
+}
