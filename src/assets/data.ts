@@ -1,4 +1,4 @@
-import { bird } from '../types/common';
+import { birdCard } from '../types/common';
 import img0 from './data-img/0.jpg';
 import img1 from './data-img/1.jpg';
 import img2 from './data-img/2.jpg';
@@ -6,7 +6,7 @@ import img3 from './data-img/3.jpg';
 import img4 from './data-img/4.jpg';
 import img5 from './data-img/5.jpg';
 
-const data: bird[] = [
+const data: birdCard[] = [
   {
     num: 0,
     title: 'Синица',

@@ -1,4 +1,4 @@
-type bird = {
+type birdCard = {
   num: number;
   title: string;
   interTitle: string;
@@ -9,4 +9,4 @@ type bird = {
   description: string;
 };
 
-export type { bird };
+export type { birdCard };

@@ -1,0 +1,29 @@
+@import '../../App.variables.scss';
+
+.search-form {
+  margin: 0 auto;
+  margin-bottom: 50px;
+  padding: 10px 22px;
+  width: 370px;
+  display: flex;
+  background-color: $grey;
+  border-radius: 20px;
+
+  .search-img {
+    margin-right: 8px;
+    height: 20px;
+    width: 20px;
+  }
+
+  .search-bar {
+    width: 90%;
+    background-color: transparent;
+    border: none;
+
+    &::placeholder {
+      font-size: $placeholder;
+      color: $brown;
+      opacity: .8;
+    }
+  }
+}
