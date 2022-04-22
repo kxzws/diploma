@@ -5,7 +5,7 @@ import { ISearchBarProps } from '../../types/interfaces';
 
 const SearchBar = (props: ISearchBarProps) => {
   const { updateSearch } = props;
-  const [input, setInput] = useState<string>();
+  const [input, setInput] = useState<string>('');
 
   const onInput = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();

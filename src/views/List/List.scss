@@ -11,6 +11,13 @@
     justify-content: center;
   }
 
+  .list-warning {
+    margin-bottom: 20px;
+    font-size: $title-font;
+    font-weight: bold;
+    text-align: center;
+  }
+
   .items-container {
     display: flex;
     justify-content: space-between;

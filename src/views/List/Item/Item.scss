@@ -41,6 +41,11 @@
         font-weight: normal;
         font-style: italic;
         color: $dark-green;
+
+        abbr {
+          font-weight: bold;
+          cursor: pointer;
+        }
       }
     }
   }

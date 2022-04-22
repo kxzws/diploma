@@ -2,8 +2,9 @@ type birdCard = {
   num: number;
   title: string;
   interTitle: string;
-  img: string;
   protectStatus: string;
+  abbr: string;
+  length: string | null;
   weight: string | null;
   wingspan: string | null;
   description: string;

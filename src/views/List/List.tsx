@@ -1,22 +1,45 @@
 import './List.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import SortBtn from './SortBtn/SortBtn';
 import Item from './Item/Item';
 import { birdCard } from '../../types/common';
-import data from '../../assets/data';
+import Loading from '../../components/Loading/Loading';
+import { getAllBirds } from '../../utils/preserves3k6sAPI';
 
 const List = () => {
-  const [search, setSearch] = useState<string>();
+  const [search, setSearch] = useState<string>('');
   const [sortType, setSortType] = useState<'ASC' | 'DESC'>('ASC');
-  const [cards, setCards] = useState<birdCard[]>(data);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isError, setIsError] = useState<boolean>(false);
+  const [cards, setCards] = useState<birdCard[]>([]);
 
-  const updateSearch = (input: string) => {
-    setSearch(input);
+  const setAllBirds = async (input: string, type: 'ASC' | 'DESC') => {
+    const birds = await getAllBirds(input, type);
+    if (birds === 'error' || (birds as birdCard[])[0].num === undefined) {
+      setIsLoading(false);
+      setIsError(true);
+      setCards([]);
+    } else {
+      setIsLoading(false);
+      setCards(birds as birdCard[]);
+    }
   };
 
-  const updateSort = (type: 'ASC' | 'DESC') => {
+  useEffect(() => {
+    setAllBirds(search, sortType);
+  }, []);
+
+  const updateSearch = async (input: string) => {
+    setSearch(input);
+    setIsLoading(true);
+    setAllBirds(input, sortType);
+  };
+
+  const updateSort = async (type: 'ASC' | 'DESC') => {
     setSortType(type);
+    setIsLoading(true);
+    setAllBirds(search, type);
   };
 
   return (
@@ -37,10 +60,14 @@ const List = () => {
           />
         </div>
 
+        {isLoading && <Loading />}
+        {isError && <p className="list-warning">Упс! Какая-то ошибка</p>}
+        {!isLoading && !isError && cards.length < 1 && (
+          <p className="list-warning">Результаты не найдены</p>
+        )}
+
         <div className="items-container">
-          {cards.map((item) => (
-            <Item key={item.num} data={item} />
-          ))}
+          {!isLoading && cards.map((item) => <Item key={item.num} data={item} />)}
         </div>
       </div>
     </section>
