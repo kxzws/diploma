@@ -15,9 +15,7 @@ const Main = () => {
             вымирания разнообразие видов, вносят существенный вклад в развитие науки и экологическое
             просвещение населения.
           </p>
-          <NavLink to="/list" className={({ isActive }) => (isActive ? 'active-link' : '')}>
-            Как помочь?
-          </NavLink>
+          <NavLink to="/list">Как помочь?</NavLink>
         </div>
       </div>
     </main>

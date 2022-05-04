@@ -1,13 +1,12 @@
 import './SortBtn.scss';
 import useActions from '../../../hooks/useActions';
 import { ISortBtnProps } from '../../../types/interfaces';
-import { sortingType } from '../../../store/types/cards';
 
 const SortBtn = (props: ISortBtnProps) => {
   const { className, type } = props;
   const { changeSortType } = useActions();
 
-  const updateSort = async () => {
+  const updateSort = () => {
     changeSortType(type);
   };
 

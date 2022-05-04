@@ -11,6 +11,14 @@ const changeSortType = (input: sortingType.ASC | sortingType.DESC) => {
   return { type: cardsActionType.CHANGE_SORT_TYPE, payload: input };
 };
 
+const addFavourite = (data: birdCard) => {
+  return { type: cardsActionType.ADD_FAVOURITE, payload: data };
+};
+
+const removeFavourite = (data: birdCard) => {
+  return { type: cardsActionType.REMOVE_FAVOURITE, payload: data };
+};
+
 const fetchCards = (searchInp: string, sortTypeInp: sortingType.ASC | sortingType.DESC) => {
   return async (dispatch: Dispatch<cardsAction>) => {
     dispatch({ type: cardsActionType.FETCH_CARDS });
@@ -24,4 +32,4 @@ const fetchCards = (searchInp: string, sortTypeInp: sortingType.ASC | sortingTyp
   };
 };
 
-export { updateSearch, changeSortType, fetchCards };
+export { updateSearch, changeSortType, fetchCards, addFavourite, removeFavourite };

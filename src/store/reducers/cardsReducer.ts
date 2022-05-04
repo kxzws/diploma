@@ -6,6 +6,7 @@ const initialState: cardsState = {
   cards: [],
   search: '',
   sortType: sortingType.ASC,
+  favourites: [],
 };
 
 const cardsReducer = (state: cardsState = initialState, action: cardsAction): cardsState => {
@@ -20,6 +21,13 @@ const cardsReducer = (state: cardsState = initialState, action: cardsAction): ca
       return { ...state, search: action.payload };
     case cardsActionType.CHANGE_SORT_TYPE:
       return { ...state, sortType: action.payload };
+    case cardsActionType.ADD_FAVOURITE:
+      return { ...state, favourites: [...state.favourites, action.payload] };
+    case cardsActionType.REMOVE_FAVOURITE:
+      return {
+        ...state,
+        favourites: state.favourites.filter((item) => item.num !== action.payload.num),
+      };
     default:
       return state;
   }

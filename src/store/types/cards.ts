@@ -12,6 +12,7 @@ interface cardsState {
   cards: birdCard[];
   search: string;
   sortType: sortingType.ASC | sortingType.DESC;
+  favourites: birdCard[];
 }
 
 // eslint-disable-next-line no-shadow
@@ -21,6 +22,8 @@ export enum cardsActionType {
   FETCH_CARDS_ERROR = 'fetchCardsError',
   UPDATE_SEARCH = 'updateSearch',
   CHANGE_SORT_TYPE = 'changeSort',
+  ADD_FAVOURITE = 'addFavourite',
+  REMOVE_FAVOURITE = 'removeFavourite',
 }
 
 interface fetchCardsAction {
@@ -47,11 +50,23 @@ interface changeSortTypeAction {
   payload: sortingType.ASC | sortingType.DESC;
 }
 
+interface addFavouriteAction {
+  type: cardsActionType.ADD_FAVOURITE;
+  payload: birdCard;
+}
+
+interface removeFavouriteAction {
+  type: cardsActionType.REMOVE_FAVOURITE;
+  payload: birdCard;
+}
+
 type cardsAction =
   | fetchCardsAction
   | fetchCardsSuccessAction
   | fetchCardsErrorAction
   | updateSearchAction
-  | changeSortTypeAction;
+  | changeSortTypeAction
+  | addFavouriteAction
+  | removeFavouriteAction;
 
 export type { cardsAction, cardsState };

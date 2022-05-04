@@ -6,22 +6,39 @@
   color: #fff;
   background-color: $brown;
 
-  .header-logo {
-    height: 30px;
-    width: 30px;
-    filter: invert(100%) sepia(44%) saturate(824%) hue-rotate(214deg) brightness(116%)
-      contrast(101%);
-  }
+  .center-container {
+    display: flex;
 
-  a {
-    margin-right: 30px;
-    font-size: $title-font;
-    letter-spacing: 2px;
-    color: #fff;
-    opacity: 0.65;
+    div {
+      flex: 1;
+    }
 
-    &.active-link {
-      opacity: 1;
+    .header-logo {
+      height: 30px;
+      width: 30px;
+      filter: invert(100%) sepia(44%) saturate(824%) hue-rotate(214deg) brightness(116%)
+        contrast(101%);
+    }
+
+    a {
+      margin-right: 30px;
+      font-size: $title-font;
+      letter-spacing: 2px;
+      color: #fff;
+      opacity: 0.65;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+
+      &.active-link {
+        opacity: 1;
+      }
+
+      &.favs {
+        display: inline-flex;
+        align-items: center;
+      }
     }
   }
 }

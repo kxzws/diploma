@@ -1,0 +1,35 @@
+@import '../../App.variables.scss';
+
+.favourites {
+  padding: 30px 0;
+  min-height: $min-height;
+  background-color: $dark-grey;
+
+  .favourites-list {
+    margin-bottom: 32px;
+    display: flex;
+    flex-flow: column wrap;
+    gap: 12px;
+  }
+
+  a {
+    margin: 0 auto;
+    padding: 13px 36px;
+    width: 160px;
+    display: block;
+    font-size: $title-font - 2px;
+    font-weight: normal;
+    color: $brown;
+    background-color: $light-brown;
+    border-radius: 12px;
+
+    &:hover {
+      animation: bouncing 0.8s infinite alternate;
+    }
+
+    &:active {
+      animation: none;
+      transform: scale(0.95);
+    }
+  }
+}

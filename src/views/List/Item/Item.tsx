@@ -2,6 +2,7 @@ import './Item.scss';
 import parse from 'html-react-parser';
 import { IMAGE_PATH } from '../../../utils/constants';
 import { IItemProps } from '../../../types/interfaces';
+import AddBtn from './AddBtn/AddBtn';
 
 const Item = (props: IItemProps) => {
   const { data } = props;
@@ -12,6 +13,7 @@ const Item = (props: IItemProps) => {
     <div className="item">
       <img src={`${IMAGE_PATH}${num}.jpg`} alt={title} className="item-img" />
       <div className="item-body">
+        <AddBtn cardId={num} />
         <h2 className="item-title">
           {title} <span>(лат. {interTitle})</span>
         </h2>
