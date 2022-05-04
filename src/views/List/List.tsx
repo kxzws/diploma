@@ -1,62 +1,34 @@
 import './List.scss';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import useTypedSelector from '../../hooks/useTypedSelector';
+import useActions from '../../hooks/useActions';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import SortBtn from './SortBtn/SortBtn';
 import Item from './Item/Item';
-import { birdCard } from '../../types/common';
 import Loading from '../../components/Loading/Loading';
-import { getAllBirds } from '../../utils/preserves3k6sAPI';
+import { sortingType } from '../../store/types/cards';
 
 const List = () => {
-  const [search, setSearch] = useState<string>('');
-  const [sortType, setSortType] = useState<'ASC' | 'DESC'>('ASC');
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isError, setIsError] = useState<boolean>(false);
-  const [cards, setCards] = useState<birdCard[]>([]);
-
-  const setAllBirds = async (input: string, type: 'ASC' | 'DESC') => {
-    const birds = await getAllBirds(input, type);
-    if (birds === 'error' || (birds as birdCard[])[0].num === undefined) {
-      setIsLoading(false);
-      setIsError(true);
-      setCards([]);
-    } else {
-      setIsLoading(false);
-      setCards(birds as birdCard[]);
-    }
-  };
+  const { isLoading, isError, cards, search, sortType } = useTypedSelector((state) => state.list);
+  const { fetchCards } = useActions();
 
   useEffect(() => {
-    setAllBirds(search, sortType);
-  }, []);
-
-  const updateSearch = async (input: string) => {
-    setSearch(input);
-    setIsLoading(true);
-    setAllBirds(input, sortType);
-  };
-
-  const updateSort = async (type: 'ASC' | 'DESC') => {
-    setSortType(type);
-    setIsLoading(true);
-    setAllBirds(search, type);
-  };
+    fetchCards(search, sortType);
+  }, [search, sortType]);
 
   return (
     <section className="list">
       <div className="center-container">
-        <SearchBar updateSearch={updateSearch} />
+        <SearchBar />
 
         <div className="btns-container">
           <SortBtn
-            className={`${sortType === 'ASC' ? 'btn-active' : null}`}
-            type="ASC"
-            updateSort={updateSort}
+            className={`${sortType === sortingType.ASC ? 'btn-active' : null}`}
+            type={sortingType.ASC}
           />
           <SortBtn
-            className={`${sortType === 'DESC' ? 'btn-active' : null}`}
-            type="DESC"
-            updateSort={updateSort}
+            className={`${sortType === sortingType.DESC ? 'btn-active' : null}`}
+            type={sortingType.DESC}
           />
         </div>
 

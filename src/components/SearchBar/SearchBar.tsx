@@ -1,11 +1,13 @@
 import './SearchBar.scss';
 import { useState } from 'react';
+import useTypedSelector from '../../hooks/useTypedSelector';
+import useActions from '../../hooks/useActions';
 import loupe from '../../assets/svg/loupe.svg';
-import { ISearchBarProps } from '../../types/interfaces';
 
-const SearchBar = (props: ISearchBarProps) => {
-  const { updateSearch } = props;
-  const [input, setInput] = useState<string>('');
+const SearchBar = () => {
+  const { search } = useTypedSelector((state) => state.list);
+  const { updateSearch } = useActions();
+  const [input, setInput] = useState<string>(search);
 
   const onInput = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault();
