@@ -24,6 +24,7 @@ export enum cardsActionType {
   CHANGE_SORT_TYPE = 'changeSort',
   ADD_FAVOURITE = 'addFavourite',
   REMOVE_FAVOURITE = 'removeFavourite',
+  CLEAR_FAVOURITE = 'clearFavourite',
 }
 
 interface fetchCardsAction {
@@ -60,6 +61,10 @@ interface removeFavouriteAction {
   payload: birdCard;
 }
 
+interface clearFavouriteAction {
+  type: cardsActionType.CLEAR_FAVOURITE;
+}
+
 type cardsAction =
   | fetchCardsAction
   | fetchCardsSuccessAction
@@ -67,6 +72,7 @@ type cardsAction =
   | updateSearchAction
   | changeSortTypeAction
   | addFavouriteAction
-  | removeFavouriteAction;
+  | removeFavouriteAction
+  | clearFavouriteAction;
 
 export type { cardsAction, cardsState };

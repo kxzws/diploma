@@ -10,4 +10,31 @@ type birdCard = {
   description: string;
 };
 
-export type { birdCard };
+type preserveCard = {
+  num: number;
+  presName: string;
+  presOwner: string;
+  area: number;
+  foundYear: number;
+  address: string;
+};
+
+type errorAPI = {
+  code: string;
+  errno: number;
+  message: string;
+  sql: string;
+  sqlMessage: string;
+  sqlState: string;
+};
+
+type successAPI = {
+  affectedRows: number;
+  fieldCount: number;
+  info: string;
+  insertId: number;
+  serverStatus: number;
+  warningStatus: number;
+};
+
+export type { birdCard, preserveCard, errorAPI, successAPI };

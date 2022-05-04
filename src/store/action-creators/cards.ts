@@ -19,6 +19,10 @@ const removeFavourite = (data: birdCard) => {
   return { type: cardsActionType.REMOVE_FAVOURITE, payload: data };
 };
 
+const clearFavourites = () => {
+  return { type: cardsActionType.CLEAR_FAVOURITE };
+};
+
 const fetchCards = (searchInp: string, sortTypeInp: sortingType.ASC | sortingType.DESC) => {
   return async (dispatch: Dispatch<cardsAction>) => {
     dispatch({ type: cardsActionType.FETCH_CARDS });
@@ -32,4 +36,4 @@ const fetchCards = (searchInp: string, sortTypeInp: sortingType.ASC | sortingTyp
   };
 };
 
-export { updateSearch, changeSortType, fetchCards, addFavourite, removeFavourite };
+export { updateSearch, changeSortType, fetchCards, addFavourite, removeFavourite, clearFavourites };

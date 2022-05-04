@@ -12,6 +12,13 @@
     gap: 12px;
   }
 
+  .favourites-warning {
+    margin-bottom: 20px;
+    font-size: $title-font;
+    font-weight: bold;
+    text-align: center;
+  }
+
   a {
     margin: 0 auto;
     padding: 13px 36px;

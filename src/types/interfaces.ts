@@ -5,6 +5,15 @@ interface IFavouriteProps {
   data: birdCard;
 }
 
+interface IDonateFormData {
+  indexes: number[];
+  preserve: number;
+  donate: number;
+  cardNumber: number;
+  cardDate: Date;
+  cardCVV: number;
+}
+
 interface ISortBtnProps {
   className: string;
   type: sortingType.ASC | sortingType.DESC;
@@ -18,4 +27,4 @@ interface IAddBtnProps {
   cardId: number;
 }
 
-export type { IFavouriteProps, ISortBtnProps, IItemProps, IAddBtnProps };
+export type { IFavouriteProps, IDonateFormData, ISortBtnProps, IItemProps, IAddBtnProps };

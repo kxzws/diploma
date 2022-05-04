@@ -28,6 +28,8 @@ const cardsReducer = (state: cardsState = initialState, action: cardsAction): ca
         ...state,
         favourites: state.favourites.filter((item) => item.num !== action.payload.num),
       };
+    case cardsActionType.CLEAR_FAVOURITE:
+      return { ...state, favourites: [] };
     default:
       return state;
   }

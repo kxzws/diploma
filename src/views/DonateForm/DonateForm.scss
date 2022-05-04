@@ -1,0 +1,182 @@
+@import '../../App.variables.scss';
+
+.donate-form {
+  padding: 30px 0;
+  min-height: $min-height;
+  background-color: $dark-grey;
+
+  .form {
+    margin: 0 auto;
+    padding: 35px 70px;
+    max-width: 50%;
+    font-size: $text-font;
+    font-weight: normal;
+    color: $brown;
+    background-color: $milk;
+    border-radius: 8px;
+
+    .form-complete {
+      margin-bottom: 22px;
+      animation: transfusion 0.8s infinite alternate;
+
+      @keyframes transfusion {
+        from {
+          color: green;
+        }
+        to {
+          color: greenyellow;
+        }
+      }
+    }
+
+    .form-title {
+      margin-bottom: 20px;
+      font-size: $title-font;
+    }
+
+    .form-subtitle {
+      margin-left: 8px;
+      margin-bottom: 10px;
+      font-size: $subtitle-font;
+      opacity: 0.85;
+    }
+
+    .form-list {
+      margin-bottom: 22px;
+      list-style-type: square;
+
+      .form-item {
+        margin-left: 36px;
+        margin-bottom: 6px;
+        font-weight: 300;
+      }
+    }
+
+    .form-error {
+      margin-left: 8px;
+      position: relative;
+      bottom: 14px;
+      font-size: $subtitle-font - 5px;
+      color: red;
+
+      &.none {
+        display: none;
+      }
+    }
+
+    .form-select {
+      margin-left: 8px;
+      margin-bottom: 22px;
+      padding: 6px 8px;
+      height: 36px;
+      width: 300px;
+      display: block;
+      font-family: inherit;
+      font-size: $placeholder;
+      color: $brown;
+      background-color: #fff;
+      border-radius: 8px;
+      border: 1px solid rgb(214, 214, 214);
+
+      &::-webkit-ms-expand {
+        display: none;
+      }
+
+      &.select-error {
+        border-color: red;
+      }
+
+      .form-option {
+        color: $brown;
+
+        &:disabled {
+          color: rgba($brown, 0.3);
+        }
+      }
+    }
+
+    .form-label {
+      display: flex;
+      align-items: baseline;
+
+      .form-input {
+        margin-right: 8px;
+      }
+    }
+
+    .form-input {
+      margin-left: 8px;
+      margin-bottom: 22px;
+      padding: 6px 12px;
+      height: 36px;
+      width: 150px;
+      display: block;
+      background-color: #fff;
+      border-radius: 8px;
+      border: 1px solid rgb(214, 214, 214);
+
+      &.input-number::placeholder {
+        font-size: $placeholder;
+        opacity: 0.5;
+      }
+
+      &.input-date {
+        width: 180px;
+        font-family: inherit;
+        font-size: $placeholder - 1px;
+      }
+
+      &.input-date::-webkit-calendar-picker-indicator {
+        opacity: 0.3;
+      }
+
+      &.input-error {
+        border-color: red;
+      }
+    }
+
+    .card-group {
+      display: flex;
+      justify-content: space-between;
+      
+      .input-card {
+        width: 220px;
+      }
+
+      .input-code {
+        width: 90px;
+      }
+    }
+
+    .btn-submit {
+      margin: 0 auto;
+      padding: 14px 22px;
+      display: block;
+      color: $brown;
+      background-color: goldenrod;
+      border: none;
+      border-radius: 9px;
+
+      &:hover {
+        animation: bounce 0.8s infinite alternate;
+
+        &:disabled {
+          animation: none;
+        }
+      }
+
+      &:disabled {
+        color: rgba(0, 0, 0, 0.6);
+      }
+
+      @keyframes bounce {
+        from {
+          transform: scale(1);
+        }
+        to {
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+}

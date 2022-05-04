@@ -6,6 +6,7 @@ import List from './views/List/List';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Favourites from './views/Favourites/Favourites';
+import DonateForm from './views/DonateForm/DonateForm';
 
 const App = () => {
   return (
@@ -17,6 +18,8 @@ const App = () => {
         <Route path="/list" element={<List />} />
 
         <Route path="/favourites" element={<Favourites />} />
+
+        <Route path="/donate" element={<DonateForm />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

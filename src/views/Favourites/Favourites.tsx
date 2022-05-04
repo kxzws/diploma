@@ -13,9 +13,10 @@ const Favourites = () => {
           {favourites.map((item) => (
             <Favourite key={item.num} data={item} />
           ))}
+          {favourites.length < 1 && <p className="favourites-warning">Избранных нет</p>}
         </ul>
       </div>
-      <NavLink to="/donate">Помочь</NavLink>
+      {favourites.length > 0 && <NavLink to="/donate">Помочь</NavLink>}
     </section>
   );
 };
