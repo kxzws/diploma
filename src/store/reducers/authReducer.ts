@@ -11,7 +11,7 @@ const authReducer = (state: authState = initialState, action: authAction): authS
     case authActionType.LOGIN_USER:
       return { ...state, isAuthorized: true, nickname: action.payload };
     case authActionType.LOGIN_ADMIN:
-      return { ...state, isAuthorized: false, isAdmin: true, nickname: action.payload };
+      return { ...state, isAuthorized: true, isAdmin: true, nickname: action.payload };
     case authActionType.LOGOUT:
       return { ...state, isAuthorized: false, isAdmin: false, nickname: null };
     default:

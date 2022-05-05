@@ -16,22 +16,18 @@
     background-color: $milk;
     border-radius: 8px;
 
-    .form-complete {
+    .auth-complete {
       margin-bottom: 22px;
-      animation: transfusion 0.8s infinite alternate;
+      color: green;
+    }
 
-      @keyframes transfusion {
-        from {
-          color: green;
-        }
-        to {
-          color: greenyellow;
-        }
-      }
+    .auth-incomplete {
+      margin-bottom: 22px;
+      color: red;
     }
 
     .form-title {
-      margin-bottom: 32px;
+      margin-bottom: 22px;
       font-size: $title-font;
     }
 

@@ -1,5 +1,6 @@
 import './App.scss';
 import { Routes, Route } from 'react-router-dom';
+import useTypedSelector from './hooks/useTypedSelector';
 import NotFound from './components/NotFound/NotFound';
 import Main from './views/Main/Main';
 import List from './views/List/List';
@@ -11,14 +12,16 @@ import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
 
 const App = () => {
+  const { isAuthorized } = useTypedSelector((state) => state.auth);
+
   return (
     <>
       <Header />
       <Routes>
         <Route path="/" element={<Main />} />
 
-        <Route path="/login" element={<SignIn />} />
-        <Route path="/register" element={<SignUp />} />
+        {!isAuthorized && <Route path="/login" element={<SignIn />} />}
+        {!isAuthorized && <Route path="/register" element={<SignUp />} />}
 
         <Route path="/list" element={<List />} />
 

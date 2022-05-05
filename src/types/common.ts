@@ -28,7 +28,7 @@ type errorAPI = {
   sqlState: string;
 };
 
-type successAPI = {
+type successPostAPI = {
   affectedRows: number;
   fieldCount: number;
   info: string;
@@ -37,4 +37,9 @@ type successAPI = {
   warningStatus: number;
 };
 
-export type { birdCard, preserveCard, errorAPI, successAPI };
+type userCard = {
+  userName: string;
+  isAdmin: boolean;
+};
+
+export type { birdCard, preserveCard, errorAPI, successPostAPI, userCard };

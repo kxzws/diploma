@@ -1,5 +1,6 @@
 import './DonateForm.scss';
 import { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { IDonateFormData } from '../../types/interfaces';
 import useTypedSelector from '../../hooks/useTypedSelector';
@@ -16,7 +17,7 @@ const DonateForm = () => {
     formState: { errors },
   } = useForm<IDonateFormData>();
   const { favourites } = useTypedSelector((state) => state.list);
-  const { nickname } = useTypedSelector((state) => state.auth);
+  const { nickname, isAuthorized } = useTypedSelector((state) => state.auth);
   const { clearFavourites } = useActions();
   const [isComplete, setIsComplete] = useState<boolean>(false);
   const [preserves, setPreserves] = useState<preserveCard[]>([]);
@@ -142,9 +143,15 @@ const DonateForm = () => {
             </p>
           </div>
 
-          <button type="submit" className="btn-submit">
-            Отправить
-          </button>
+          {!isAuthorized ? (
+            <NavLink to="/login" className="btn-submit btn-login">
+              Войти
+            </NavLink>
+          ) : (
+            <button type="submit" className="btn-submit">
+              Отправить
+            </button>
+          )}
         </form>
       </div>
     </section>

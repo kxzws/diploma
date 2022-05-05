@@ -1,15 +1,13 @@
 import './Header.scss';
 import { NavLink } from 'react-router-dom';
 import useTypedSelector from '../../hooks/useTypedSelector';
+import useActions from '../../hooks/useActions';
 import birdImg from '../../assets/svg/bird.svg';
 
 const Header = () => {
   const { favourites } = useTypedSelector((state) => state.list);
   const { isAuthorized } = useTypedSelector((state) => state.auth);
-
-  const loginUser = () => {};
-
-  const logoutUser = () => {};
+  const { logout } = useActions();
 
   return (
     <header className="header">
@@ -31,7 +29,7 @@ const Header = () => {
           <NavLink
             to="/"
             className={({ isActive }) => (isActive ? 'favs active-link' : 'favs')}
-            onClick={() => logoutUser()}
+            onClick={() => logout()}
           >
             Выйти
           </NavLink>
@@ -39,7 +37,6 @@ const Header = () => {
           <NavLink
             to="/login"
             className={({ isActive }) => (isActive ? 'favs active-link' : 'favs')}
-            onClick={() => loginUser()}
           >
             Войти
           </NavLink>

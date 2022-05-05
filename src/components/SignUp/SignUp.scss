@@ -68,7 +68,8 @@
         margin-bottom: 32px;
       }
 
-      &.input-error {
+      &.input-error,
+      &.input-mail:invalid {
         border-color: red;
       }
     }
