@@ -14,6 +14,18 @@ interface IDonateFormData {
   cardCVV: number;
 }
 
+interface ILoginFormData {
+  login: string;
+  password: string;
+}
+
+interface ISignUpFormData {
+  login: string;
+  password: string;
+  mail: string;
+  phone: string;
+}
+
 interface ISortBtnProps {
   className: string;
   type: sortingType.ASC | sortingType.DESC;
@@ -27,4 +39,12 @@ interface IAddBtnProps {
   cardId: number;
 }
 
-export type { IFavouriteProps, IDonateFormData, ISortBtnProps, IItemProps, IAddBtnProps };
+export type {
+  IFavouriteProps,
+  IDonateFormData,
+  ILoginFormData,
+  ISignUpFormData,
+  ISortBtnProps,
+  IItemProps,
+  IAddBtnProps,
+};

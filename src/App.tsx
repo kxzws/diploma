@@ -7,6 +7,8 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Favourites from './views/Favourites/Favourites';
 import DonateForm from './views/DonateForm/DonateForm';
+import SignIn from './components/SignIn/SignIn';
+import SignUp from './components/SignUp/SignUp';
 
 const App = () => {
   return (
@@ -14,6 +16,9 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<Main />} />
+
+        <Route path="/login" element={<SignIn />} />
+        <Route path="/register" element={<SignUp />} />
 
         <Route path="/list" element={<List />} />
 

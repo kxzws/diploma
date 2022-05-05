@@ -1,6 +1,5 @@
 import './Favourite.scss';
 import parse from 'html-react-parser';
-import useTypedSelector from '../../../hooks/useTypedSelector';
 import useActions from '../../../hooks/useActions';
 import { IFavouriteProps } from '../../../types/interfaces';
 

@@ -7,9 +7,8 @@ interface authState {
 // eslint-disable-next-line no-shadow
 export enum authActionType {
   LOGIN_USER = 'loginUser',
-  LOGOUT_USER = 'logoutUser',
   LOGIN_ADMIN = 'loginAdmin',
-  LOGOUT_ADMIN = 'logoutAdmin',
+  LOGOUT = 'logout',
 }
 
 interface loginUserAction {
@@ -17,19 +16,15 @@ interface loginUserAction {
   payload: string;
 }
 
-interface logoutUserAction {
-  type: authActionType.LOGOUT_USER;
-}
-
 interface loginAdminAction {
   type: authActionType.LOGIN_ADMIN;
   payload: string;
 }
 
-interface logoutAdminAction {
-  type: authActionType.LOGOUT_ADMIN;
+interface logoutAction {
+  type: authActionType.LOGOUT;
 }
 
-type authAction = loginUserAction | logoutUserAction | loginAdminAction | logoutAdminAction;
+type authAction = loginUserAction | loginAdminAction | logoutAction;
 
 export type { authAction, authState };

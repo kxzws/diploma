@@ -5,6 +5,11 @@ import birdImg from '../../assets/svg/bird.svg';
 
 const Header = () => {
   const { favourites } = useTypedSelector((state) => state.list);
+  const { isAuthorized } = useTypedSelector((state) => state.auth);
+
+  const loginUser = () => {};
+
+  const logoutUser = () => {};
 
   return (
     <header className="header">
@@ -22,6 +27,23 @@ const Header = () => {
         >
           Избранное ({favourites.length})
         </NavLink>
+        {isAuthorized ? (
+          <NavLink
+            to="/"
+            className={({ isActive }) => (isActive ? 'favs active-link' : 'favs')}
+            onClick={() => logoutUser()}
+          >
+            Выйти
+          </NavLink>
+        ) : (
+          <NavLink
+            to="/login"
+            className={({ isActive }) => (isActive ? 'favs active-link' : 'favs')}
+            onClick={() => loginUser()}
+          >
+            Войти
+          </NavLink>
+        )}
       </div>
     </header>
   );
