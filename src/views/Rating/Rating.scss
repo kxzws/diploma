@@ -1,0 +1,50 @@
+@import '../../App.variables.scss';
+
+.rating {
+  padding: 30px 0;
+  min-height: $min-height;
+  background-color: $dark-grey;
+
+  .rating-title {
+    margin-bottom: 20px;
+    font-size: $header;
+    font-weight: normal;
+  }
+
+  .rating-list {
+    margin-left: 18px;
+
+    .rating-item {
+      margin-bottom: 7px;
+
+      .rating-amount,
+      .rating-nick {
+        font-weight: normal;
+      }
+
+      &:nth-child(1) {
+        font-size: $big-title + 12px;
+
+        .rating-nick {
+          color: goldenrod;
+        }
+      }
+
+      &:nth-child(2) {
+        font-size: $big-title + 8px;
+
+        .rating-nick {
+          color: silver;
+        }
+      }
+
+      &:nth-child(3) {
+        font-size: $big-title + 4px;
+
+        .rating-nick {
+          color: coral;
+        }
+      }
+    }
+  }
+}

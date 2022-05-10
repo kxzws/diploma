@@ -8,6 +8,7 @@ import {
   getAllgenuses,
   getAllpreserves,
   getAllstatuses,
+  makeBackup,
   postBirdSpecies,
 } from '../../utils/preserves3k6sAPI';
 import { genusCard, preserveCard, protectStatusCard } from '../../types/common';
@@ -106,6 +107,15 @@ const Admin = () => {
     }
   };
 
+  const makeBackupRequest = async () => {
+    const response = await makeBackup();
+    if (response === 'error') {
+      console.log('error');
+    } else {
+      console.log('backup success');
+    }
+  };
+
   const onSubmitAdd: SubmitHandler<IAdminAddFormData> = (data) => {
     const name = String(addForm.getValues('name'));
     const length = addForm.getValues('length');
@@ -139,7 +149,13 @@ const Admin = () => {
   return (
     <section className="admin-form">
       <div className="center-container">
-        <button type="button" className="btn-backup">
+        <button
+          type="button"
+          className="btn-backup"
+          onClick={() => {
+            makeBackupRequest();
+          }}
+        >
           Бэкап в json
         </button>
 

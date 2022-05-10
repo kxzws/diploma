@@ -15,6 +15,11 @@ type genusCard = {
   genusName: string;
 };
 
+type ratingCard = {
+  user: string;
+  amount: number;
+};
+
 type protectStatusCard = {
   num: number;
   longName: string;
@@ -55,6 +60,7 @@ type userCard = {
 export type {
   birdCard,
   genusCard,
+  ratingCard,
   protectStatusCard,
   preserveCard,
   errorAPI,

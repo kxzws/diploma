@@ -4,10 +4,41 @@ import {
   genusCard,
   preserveCard,
   protectStatusCard,
+  ratingCard,
   successPostAPI,
   userCard,
 } from '../types/common';
 import { API_URL } from './constants';
+
+export const makeBackup = async (): Promise<string | birdCard[]> => {
+  const getRequestURL = `${API_URL}backup`;
+  const response: birdCard[] | string = await fetch(getRequestURL)
+    .then((res) => res.json())
+    .then(
+      (result: birdCard[]) => {
+        return result;
+      },
+      (error: errorAPI) => {
+        return 'error';
+      }
+    );
+  return response;
+};
+
+export const getRating = async (): Promise<string | ratingCard[]> => {
+  const getRequestURL = `${API_URL}rating`;
+  const response: ratingCard[] | string = await fetch(getRequestURL)
+    .then((res) => res.json())
+    .then(
+      (result: ratingCard[]) => {
+        return result;
+      },
+      (error: errorAPI) => {
+        return 'error';
+      }
+    );
+  return response;
+};
 
 export const getAllBirds = async (
   search: string,

@@ -18,6 +18,9 @@ const Header = () => {
         <NavLink to="/list" className={({ isActive }) => (isActive ? 'active-link' : '')}>
           Помочь
         </NavLink>
+        <NavLink to="/rating" className={({ isActive }) => (isActive ? 'active-link' : '')}>
+          Рейтинг
+        </NavLink>
         {isAdmin && (
           <NavLink to="/admin" className={({ isActive }) => (isActive ? 'active-link' : '')}>
             Админка

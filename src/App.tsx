@@ -11,6 +11,7 @@ import DonateForm from './views/DonateForm/DonateForm';
 import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
 import Admin from './views/Admin/Admin';
+import Rating from './views/Rating/Rating';
 
 const App = () => {
   const { isAuthorized, isAdmin } = useTypedSelector((state) => state.auth);
@@ -27,6 +28,8 @@ const App = () => {
         {isAdmin && <Route path="/admin" element={<Admin />} />}
 
         <Route path="/list" element={<List />} />
+
+        <Route path="/rating" element={<Rating />} />
 
         <Route path="/favourites" element={<Favourites />} />
 
