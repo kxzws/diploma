@@ -3,9 +3,14 @@ import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { IAdminAddFormData, IAdminRemoveFormData } from '../../types/interfaces';
 import useTypedSelector from '../../hooks/useTypedSelector';
-import useActions from '../../hooks/useActions';
-import { getAllgenuses } from '../../utils/preserves3k6sAPI';
-import { genusCard } from '../../types/common';
+import {
+  deleteBirdSpecies,
+  getAllgenuses,
+  getAllpreserves,
+  getAllstatuses,
+  postBirdSpecies,
+} from '../../utils/preserves3k6sAPI';
+import { genusCard, preserveCard, protectStatusCard } from '../../types/common';
 
 const Admin = () => {
   const addForm = useForm<IAdminAddFormData>();
@@ -13,9 +18,20 @@ const Admin = () => {
   const { cards } = useTypedSelector((state) => state.list);
   const [isCompleteAdd, setIsCompleteAdd] = useState<boolean>(false);
   const [isCompleteRemove, setIsCompleteRemove] = useState<boolean>(false);
+  const [statuses, setStatuses] = useState<protectStatusCard[]>([]);
   const [genuses, setGenuses] = useState<genusCard[]>([]);
+  const [preserves, setPreserves] = useState<preserveCard[]>([]);
 
   useEffect(() => {
+    const getStatuses = async () => {
+      const response = await getAllstatuses();
+      if (response === 'error') {
+        console.log('error');
+      } else {
+        const statusesArr = response as protectStatusCard[];
+        setStatuses(statusesArr);
+      }
+    };
     const getGenuses = async () => {
       const response = await getAllgenuses();
       if (response === 'error') {
@@ -25,7 +41,19 @@ const Admin = () => {
         setGenuses(genusesArr);
       }
     };
+    const getPreserves = async () => {
+      const response = await getAllpreserves();
+      if (response === 'error') {
+        console.log('error');
+      } else {
+        const preservesArr = response as preserveCard[];
+        setPreserves(preservesArr);
+      }
+    };
+
+    getStatuses();
     getGenuses();
+    getPreserves();
   }, []);
 
   const toggleCompleteAdd = () => {
@@ -42,23 +70,70 @@ const Admin = () => {
     }, 3000);
   };
 
+  const sendBirdSpecies = async (
+    name: string,
+    length: number | null,
+    weight: number | null,
+    wingspan: number | null,
+    description: string | null,
+    genusId: number,
+    protectStatusId: number,
+    preserveId: number
+  ) => {
+    const response = await postBirdSpecies(
+      name,
+      length,
+      weight,
+      wingspan,
+      description,
+      genusId,
+      protectStatusId,
+      preserveId
+    );
+    if (response === 'error') {
+      console.log('error');
+    } else {
+      toggleCompleteAdd();
+    }
+  };
+
+  const removeBirdSpecies = async (speciesId: number) => {
+    const response = await deleteBirdSpecies(speciesId);
+    if (response === 'error') {
+      console.log('error');
+    } else {
+      toggleCompleteRemove();
+    }
+  };
+
   const onSubmitAdd: SubmitHandler<IAdminAddFormData> = (data) => {
     const name = String(addForm.getValues('name'));
-    const length = Number(addForm.getValues('length'));
-    const weight = Number(addForm.getValues('weight'));
-    const wingspan = Number(addForm.getValues('wingspan'));
-    const description = String(addForm.getValues('description'));
+    const length = addForm.getValues('length');
+    const weight = addForm.getValues('weight');
+    const wingspan = addForm.getValues('wingspan');
+    const description = addForm.getValues('description');
     const genusId = Number(addForm.getValues('genus'));
+    const protectStatusId = Number(addForm.getValues('protectStatus'));
+    const preserveId = Number(addForm.getValues('preserve'));
 
+    sendBirdSpecies(
+      name,
+      length,
+      weight,
+      wingspan,
+      description,
+      genusId,
+      protectStatusId,
+      preserveId
+    );
     addForm.reset();
-    toggleCompleteAdd();
   };
 
   const onSubmitRemove: SubmitHandler<IAdminRemoveFormData> = (data) => {
     const speciesId = Number(removeForm.getValues('species'));
 
+    removeBirdSpecies(speciesId);
     removeForm.reset();
-    toggleCompleteRemove();
   };
 
   return (
@@ -124,6 +199,27 @@ const Admin = () => {
             {...addForm.register('description')}
           />
 
+          <h3 className="form-subtitle">Защитный статус</h3>
+          <select
+            className={`form-select ${
+              addForm.formState.errors.protectStatus ? 'select-error' : null
+            }`}
+            defaultValue=""
+            {...addForm.register('protectStatus', { required: true })}
+          >
+            <option className="form-option" value="" disabled>
+              Не выбрано
+            </option>
+            {statuses.map((item) => (
+              <option key={item.num} className="form-option" value={item.num}>
+                {item.longName}
+              </option>
+            ))}
+          </select>
+          <p className={`form-error ${addForm.formState.errors.protectStatus ? null : 'none'}`}>
+            *Необходимо выбрать один из защитных статусов
+          </p>
+
           <h3 className="form-subtitle">Род</h3>
           <select
             className={`form-select ${addForm.formState.errors.genus ? 'select-error' : null}`}
@@ -141,6 +237,25 @@ const Admin = () => {
           </select>
           <p className={`form-error ${addForm.formState.errors.genus ? null : 'none'}`}>
             *Необходимо выбрать один из родов
+          </p>
+
+          <h3 className="form-subtitle">Заповедник</h3>
+          <select
+            className={`form-select ${addForm.formState.errors.preserve ? 'select-error' : null}`}
+            defaultValue=""
+            {...addForm.register('preserve', { required: true })}
+          >
+            <option className="form-option" value="" disabled>
+              Не выбрано
+            </option>
+            {preserves.map((item) => (
+              <option key={item.num} className="form-option" value={item.num}>
+                {item.presName}
+              </option>
+            ))}
+          </select>
+          <p className={`form-error ${addForm.formState.errors.preserve ? null : 'none'}`}>
+            *Необходимо выбрать один из заповедников
           </p>
           <button type="submit" className="btn-submit">
             Добавить

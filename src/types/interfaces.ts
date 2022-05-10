@@ -16,11 +16,13 @@ interface IDonateFormData {
 
 interface IAdminAddFormData {
   name: string;
-  length: number;
-  weight: number;
-  wingspan: number;
-  description: string;
+  length: number | null;
+  weight: number | null;
+  wingspan: number | null;
+  description: string | null;
   genus: number;
+  protectStatus: number;
+  preserve: number;
 }
 
 interface IAdminRemoveFormData {

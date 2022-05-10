@@ -3,6 +3,7 @@ import {
   errorAPI,
   genusCard,
   preserveCard,
+  protectStatusCard,
   successPostAPI,
   userCard,
 } from '../types/common';
@@ -52,6 +53,21 @@ export const getAllgenuses = async (): Promise<string | genusCard[]> => {
     .then((res) => res.json())
     .then(
       (result: genusCard[]) => {
+        return result;
+      },
+      (error: errorAPI) => {
+        return 'error';
+      }
+    );
+  return response;
+};
+
+export const getAllstatuses = async (): Promise<string | protectStatusCard[]> => {
+  const getRequestURL = `${API_URL}statuses`;
+  const response: protectStatusCard[] | string = await fetch(getRequestURL)
+    .then((res) => res.json())
+    .then(
+      (result: protectStatusCard[]) => {
         return result;
       },
       (error: errorAPI) => {
@@ -143,6 +159,72 @@ export const registerUserData = async (
       'Content-Type': 'application/json;charset=utf-8',
     },
     body: JSON.stringify(user),
+  };
+  const response: successPostAPI | string = await fetch(getRequestURL, requestOptions)
+    .then((res) => res.json())
+    .then(
+      (result: successPostAPI) => {
+        return result;
+      },
+      (error: errorAPI) => {
+        console.log(error.sqlMessage);
+        console.log(error.sql);
+        return 'error';
+      }
+    );
+  return response;
+};
+
+export const postBirdSpecies = async (
+  name: string,
+  length: number | null,
+  weight: number | null,
+  wingspan: number | null,
+  descr: string | null,
+  genusId: number,
+  protectStatusId: number,
+  preserveId: number
+): Promise<string | successPostAPI[]> => {
+  const getRequestURL = `${API_URL}add-species`;
+  const species = {
+    name,
+    length,
+    weight,
+    wingspan,
+    descr,
+    genusId,
+    protectStatusId,
+    preserveId,
+  };
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+    body: JSON.stringify(species),
+  };
+  const response: successPostAPI[] | string = await fetch(getRequestURL, requestOptions)
+    .then((res) => res.json())
+    .then(
+      (result: successPostAPI[]) => {
+        return result;
+      },
+      (error: errorAPI[]) => {
+        console.log(error[0].sqlMessage, error[1].sqlMessage);
+        console.log(error[0].sql, error[1].sql);
+        return 'error';
+      }
+    );
+  return response;
+};
+
+export const deleteBirdSpecies = async (speciesId: number): Promise<string | successPostAPI> => {
+  const getRequestURL = `${API_URL}delete-species/${speciesId}`;
+  const requestOptions = {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
   };
   const response: successPostAPI | string = await fetch(getRequestURL, requestOptions)
     .then((res) => res.json())
