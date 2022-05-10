@@ -6,7 +6,7 @@ import birdImg from '../../assets/svg/bird.svg';
 
 const Header = () => {
   const { favourites } = useTypedSelector((state) => state.list);
-  const { isAuthorized } = useTypedSelector((state) => state.auth);
+  const { isAuthorized, isAdmin } = useTypedSelector((state) => state.auth);
   const { logout } = useActions();
 
   return (
@@ -18,6 +18,11 @@ const Header = () => {
         <NavLink to="/list" className={({ isActive }) => (isActive ? 'active-link' : '')}>
           Помочь
         </NavLink>
+        {isAdmin && (
+          <NavLink to="/admin" className={({ isActive }) => (isActive ? 'active-link' : '')}>
+            Админка
+          </NavLink>
+        )}
         <div />
         <NavLink
           to="/favourites"

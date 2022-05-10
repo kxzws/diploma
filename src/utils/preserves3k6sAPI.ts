@@ -1,4 +1,11 @@
-import { birdCard, errorAPI, preserveCard, successPostAPI, userCard } from '../types/common';
+import {
+  birdCard,
+  errorAPI,
+  genusCard,
+  preserveCard,
+  successPostAPI,
+  userCard,
+} from '../types/common';
 import { API_URL } from './constants';
 
 export const getAllBirds = async (
@@ -30,6 +37,21 @@ export const getAllpreserves = async (): Promise<string | preserveCard[]> => {
     .then((res) => res.json())
     .then(
       (result: preserveCard[]) => {
+        return result;
+      },
+      (error: errorAPI) => {
+        return 'error';
+      }
+    );
+  return response;
+};
+
+export const getAllgenuses = async (): Promise<string | genusCard[]> => {
+  const getRequestURL = `${API_URL}genuses`;
+  const response: genusCard[] | string = await fetch(getRequestURL)
+    .then((res) => res.json())
+    .then(
+      (result: genusCard[]) => {
         return result;
       },
       (error: errorAPI) => {

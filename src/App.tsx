@@ -10,9 +10,10 @@ import Favourites from './views/Favourites/Favourites';
 import DonateForm from './views/DonateForm/DonateForm';
 import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
+import Admin from './views/Admin/Admin';
 
 const App = () => {
-  const { isAuthorized } = useTypedSelector((state) => state.auth);
+  const { isAuthorized, isAdmin } = useTypedSelector((state) => state.auth);
 
   return (
     <>
@@ -22,6 +23,8 @@ const App = () => {
 
         {!isAuthorized && <Route path="/login" element={<SignIn />} />}
         {!isAuthorized && <Route path="/register" element={<SignUp />} />}
+
+        {isAdmin && <Route path="/admin" element={<Admin />} />}
 
         <Route path="/list" element={<List />} />
 

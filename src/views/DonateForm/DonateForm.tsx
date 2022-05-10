@@ -104,6 +104,8 @@ const DonateForm = () => {
             <input
               id="donate"
               type="number"
+              min="1"
+              defaultValue="1"
               className={`form-input input-number ${errors.donate ? 'input-error' : null}`}
               {...register('donate', { required: true })}
             />
@@ -115,11 +117,14 @@ const DonateForm = () => {
           <div className="card-group">
             <input
               type="number"
+              min="1000000000000000"
+              max="9999999999999999"
+              defaultValue="1234123412341234"
               className={`form-input input-number input-card ${
                 errors.cardNumber ? 'input-error' : null
               }`}
               placeholder="Номер карты"
-              {...register('cardNumber', { required: true, minLength: 13 })}
+              {...register('cardNumber', { required: true, minLength: 16, maxLength: 16 })}
             />
             <p className={`form-error ${errors.cardNumber ? null : 'none'}`}>*Обязательно</p>
 
@@ -132,6 +137,9 @@ const DonateForm = () => {
 
             <input
               type="number"
+              min="100"
+              max="999"
+              defaultValue="999"
               className={`form-input input-number input-code ${
                 errors.cardCVV ? 'input-error' : null
               }`}

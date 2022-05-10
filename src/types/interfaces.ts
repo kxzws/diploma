@@ -14,6 +14,19 @@ interface IDonateFormData {
   cardCVV: number;
 }
 
+interface IAdminAddFormData {
+  name: string;
+  length: number;
+  weight: number;
+  wingspan: number;
+  description: string;
+  genus: number;
+}
+
+interface IAdminRemoveFormData {
+  species: number;
+}
+
 interface ILoginFormData {
   login: string;
   password: string;
@@ -42,6 +55,8 @@ interface IAddBtnProps {
 export type {
   IFavouriteProps,
   IDonateFormData,
+  IAdminAddFormData,
+  IAdminRemoveFormData,
   ILoginFormData,
   ISignUpFormData,
   ISortBtnProps,

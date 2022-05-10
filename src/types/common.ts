@@ -10,6 +10,11 @@ type birdCard = {
   description: string;
 };
 
+type genusCard = {
+  num: number;
+  genusName: string;
+};
+
 type preserveCard = {
   num: number;
   presName: string;
@@ -42,4 +47,4 @@ type userCard = {
   isAdmin: boolean;
 };
 
-export type { birdCard, preserveCard, errorAPI, successPostAPI, userCard };
+export type { birdCard, genusCard, preserveCard, errorAPI, successPostAPI, userCard };
