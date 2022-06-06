@@ -1,5 +1,9 @@
-# Getting Started with Create React App
+# Getting Started
+Clone or download this repo and run npm start `npm start` in the project directory.
+**Note: you have to install *npm* to successfully init this project**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Learn More
+## Technologies
+- HTML
+- SASS
+- TypeScript
+- React, Redux Toolkit, Redux-thunks
