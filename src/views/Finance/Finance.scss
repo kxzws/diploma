@@ -1,0 +1,45 @@
+@import '../../App.variables.scss';
+
+.finance {
+  padding: 30px 0;
+  min-height: $min-height;
+  background-color: $dark-grey;
+
+  .finance-title {
+    margin-bottom: 20px;
+    font-size: $big-title;
+    font-weight: normal;
+  }
+
+  .finance-subtitle {
+    margin-bottom: 16px;
+    font-size: $title-font;
+    font-weight: normal;
+  }
+
+  .finance-list {
+    margin-left: 18px;
+
+    .finance-item {
+      margin-bottom: 7px;
+
+      .finance-name {
+        font-size: $subtitle-font;
+        font-weight: normal;
+      }
+
+      .finance-qty {
+        font-style: italic;
+        font-weight: normal;
+
+        &.qty-neg {
+          color: #790008;
+        }
+
+        &.qty-pos {
+          color: #005b00;
+        }
+      }
+    }
+  }
+}

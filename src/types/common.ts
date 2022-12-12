@@ -20,6 +20,15 @@ type ratingCard = {
   amount: number;
 };
 
+
+type financeCard = {
+  presName: string;
+  annualStateBudget: number;
+  donateAmount: string;
+  staffCost: number;
+  speciesCost: number;
+};
+
 type protectStatusCard = {
   num: number;
   longName: string;
@@ -61,6 +70,7 @@ export type {
   birdCard,
   genusCard,
   ratingCard,
+  financeCard,
   protectStatusCard,
   preserveCard,
   errorAPI,

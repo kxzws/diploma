@@ -12,6 +12,7 @@ import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
 import Admin from './views/Admin/Admin';
 import Rating from './views/Rating/Rating';
+import Finance from './views/Finance/Finance';
 
 const App = () => {
   const { isAuthorized, isAdmin } = useTypedSelector((state) => state.auth);
@@ -30,6 +31,8 @@ const App = () => {
         <Route path="/list" element={<List />} />
 
         <Route path="/rating" element={<Rating />} />
+
+        <Route path="/finance" element={<Finance />} />
 
         <Route path="/favourites" element={<Favourites />} />
 

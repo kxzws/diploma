@@ -5,6 +5,7 @@ import {
   preserveCard,
   protectStatusCard,
   ratingCard,
+  financeCard,
   successPostAPI,
   userCard,
 } from '../types/common';
@@ -31,6 +32,21 @@ export const getRating = async (): Promise<string | ratingCard[]> => {
     .then((res) => res.json())
     .then(
       (result: ratingCard[]) => {
+        return result;
+      },
+      (error: errorAPI) => {
+        return 'error';
+      }
+    );
+  return response;
+};
+
+export const getFinance = async (): Promise<string | financeCard[]> => {
+  const getRequestURL = `${API_URL}finance`;
+  const response: financeCard[] | string = await fetch(getRequestURL)
+    .then((res) => res.json())
+    .then(
+      (result: financeCard[]) => {
         return result;
       },
       (error: errorAPI) => {
