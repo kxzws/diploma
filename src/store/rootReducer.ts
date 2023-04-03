@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import authReducer from './authReducer';
-import cardsReducer from './cardsReducer';
+import authReducer from './Auth/slices';
+import cardsReducer from './Cards/slices';
 
 const rootReducer = combineReducers({
-  list: cardsReducer,
   auth: authReducer,
+  cards: cardsReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

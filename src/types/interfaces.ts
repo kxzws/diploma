@@ -1,4 +1,4 @@
-import { sortingType } from '../store/types/cards';
+import { sortingType } from '../store/Cards/types';
 import { birdCard } from './common';
 
 interface IFavouriteProps {

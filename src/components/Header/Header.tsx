@@ -1,13 +1,19 @@
-import './Header.scss';
 import { NavLink } from 'react-router-dom';
+
+import useAppDispatch from '../../hooks/useAppDispatch';
 import useTypedSelector from '../../hooks/useTypedSelector';
-import useActions from '../../hooks/useActions';
+import { authSlice } from '../../store/Auth/slices';
+import { cardsSlice } from '../../store/Cards/slices';
 import birdImg from '../../assets/svg/bird.svg';
+import './Header.scss';
 
 const Header = () => {
-  const { favourites } = useTypedSelector((state) => state.list);
+  const { favourites } = useTypedSelector((state) => state.cards);
   const { isAuthorized, isAdmin } = useTypedSelector((state) => state.auth);
-  const { logout, clearFavourites } = useActions();
+
+  const { logout } = authSlice.actions;
+  const { clearFavourites } = cardsSlice.actions;
+  const dispatch = useAppDispatch();
 
   return (
     <header className="header">
@@ -41,8 +47,8 @@ const Header = () => {
             to="/"
             className={({ isActive }) => (isActive ? 'favs active-link' : 'favs')}
             onClick={() => {
-              clearFavourites();
-              logout();
+              dispatch(clearFavourites());
+              dispatch(logout());
             }}
           >
             Выйти

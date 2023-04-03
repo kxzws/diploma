@@ -1,20 +1,23 @@
-import './List.scss';
 import { useEffect } from 'react';
+
+import useAppDispatch from '../../hooks/useAppDispatch';
 import useTypedSelector from '../../hooks/useTypedSelector';
-import useActions from '../../hooks/useActions';
+import { getBirdCards } from '../../store/Cards/thunks';
+import { sortingType } from '../../store/Cards/types';
 import SearchBar from '../../components/SearchBar/SearchBar';
-import SortBtn from './SortBtn/SortBtn';
-import Item from './Item/Item';
 import Loading from '../../components/Loading/Loading';
-import { sortingType } from '../../store/types/cards';
+import Item from './Item/Item';
+import SortBtn from './SortBtn/SortBtn';
+import './List.scss';
 
 const List = () => {
-  const { isLoading, isError, cards, search, sortType } = useTypedSelector((state) => state.list);
-  const { fetchCards } = useActions();
+  const { isLoading, isError, cards, search, sortType } = useTypedSelector((state) => state.cards);
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    fetchCards(search, sortType);
-  }, [search, sortType]);
+    dispatch(getBirdCards({ searchInp: search, sortTypeInp: sortType }));
+  }, [search, sortType, dispatch]);
 
   return (
     <section className="list">

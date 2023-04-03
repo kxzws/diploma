@@ -1,15 +1,19 @@
-import './Favourite.scss';
 import parse from 'html-react-parser';
-import useActions from '../../../hooks/useActions';
+
 import { IFavouriteProps } from '../../../types/interfaces';
+import useAppDispatch from '../../../hooks/useAppDispatch';
+import { cardsSlice } from '../../../store/Cards/slices';
+import './Favourite.scss';
 
 const Favourite = (props: IFavouriteProps) => {
   const { data } = props;
   const { title, interTitle, protectStatus, abbr, description } = data;
-  const { removeFavourite } = useActions();
+
+  const { removeFavourite } = cardsSlice.actions;
+  const dispatch = useAppDispatch();
 
   const clickRemoveFavourite = () => {
-    removeFavourite(data);
+    dispatch(removeFavourite(data));
   };
 
   return (

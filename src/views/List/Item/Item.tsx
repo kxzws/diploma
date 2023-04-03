@@ -1,8 +1,9 @@
-import './Item.scss';
 import parse from 'html-react-parser';
-import { IMAGE_PATH } from '../../../utils/constants';
+
 import { IItemProps } from '../../../types/interfaces';
+import { IMAGE_PATH } from '../../../utils/constants';
 import AddBtn from './AddBtn/AddBtn';
+import './Item.scss';
 
 const Item = (props: IItemProps) => {
   const { data } = props;

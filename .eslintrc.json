@@ -54,7 +54,8 @@
     "import/prefer-default-export": "off",
     "@typescript-eslint/default-param-last": "off",
     "eslint/default-param-last": "off",
-    "default-param-last": "off"
+    "default-param-last": "off",
+    "no-param-reassign": "off"
   },
   "settings": {
     "react": {

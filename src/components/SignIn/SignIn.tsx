@@ -1,9 +1,11 @@
-import './SignIn.scss';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
+
 import { ILoginFormData } from '../../types/interfaces';
+import useAppDispatch from '../../hooks/useAppDispatch';
 import useTypedSelector from '../../hooks/useTypedSelector';
-import useActions from '../../hooks/useActions';
+import { getLoginData } from '../../store/Auth/thunks';
+import './SignIn.scss';
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -15,13 +17,14 @@ const SignIn = () => {
     formState: { errors },
   } = useForm<ILoginFormData>();
   const { isAuthorized } = useTypedSelector((state) => state.auth);
-  const { fetchLoginData } = useActions();
+
+  const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<ILoginFormData> = (data) => {
-    const login = String(getValues('login'));
-    const password = String(getValues('password'));
+    const nick = String(getValues('login'));
+    const pass = String(getValues('password'));
 
-    fetchLoginData(login, password);
+    dispatch(getLoginData({ nick, pass }));
     reset();
     navigate('/list');
   };

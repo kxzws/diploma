@@ -1,24 +1,28 @@
-import './DonateForm.scss';
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { IDonateFormData } from '../../types/interfaces';
-import useTypedSelector from '../../hooks/useTypedSelector';
-import useActions from '../../hooks/useActions';
+
 import { getAllpreserves, postDonate } from '../../utils/preserves3k6sAPI';
 import { preserveCard } from '../../types/common';
+import { IDonateFormData } from '../../types/interfaces';
+import useAppDispatch from '../../hooks/useAppDispatch';
+import useTypedSelector from '../../hooks/useTypedSelector';
+import { cardsSlice } from '../../store/Cards/slices';
+import './DonateForm.scss';
 
 const DonateForm = () => {
   const {
     register,
     handleSubmit,
-    getValues,
     reset,
     formState: { errors },
   } = useForm<IDonateFormData>();
-  const { favourites } = useTypedSelector((state) => state.list);
+  const { favourites } = useTypedSelector((state) => state.cards);
   const { nickname, isAuthorized } = useTypedSelector((state) => state.auth);
-  const { clearFavourites } = useActions();
+
+  const { clearFavourites } = cardsSlice.actions;
+  const dispatch = useAppDispatch();
+
   const [isComplete, setIsComplete] = useState<boolean>(false);
   const [preserves, setPreserves] = useState<preserveCard[]>([]);
 
@@ -52,8 +56,7 @@ const DonateForm = () => {
   };
 
   const onSubmit: SubmitHandler<IDonateFormData> = (data) => {
-    const preserve = Number(getValues('preserve'));
-    const donate = Number(getValues('donate'));
+    const { preserve, donate } = data;
     // const cardNumber = getValues('cardNumber');
     // const cardDate = getValues('cardDate');
     // const cardCVV = getValues('cardCVV');
@@ -61,7 +64,7 @@ const DonateForm = () => {
     const speciesArr = favourites.map((item) => item.num);
     sendDonate(speciesArr, preserve, donate);
     reset();
-    clearFavourites();
+    dispatch(clearFavourites());
   };
 
   return (

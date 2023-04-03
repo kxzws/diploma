@@ -1,25 +1,32 @@
-import './AddBtn.scss';
 import { useState } from 'react';
-import useActions from '../../../../hooks/useActions';
-import useTypedSelector from '../../../../hooks/useTypedSelector';
+
 import { IAddBtnProps } from '../../../../types/interfaces';
+import useAppDispatch from '../../../../hooks/useAppDispatch';
+import useTypedSelector from '../../../../hooks/useTypedSelector';
+import { cardsSlice } from '../../../../store/Cards/slices';
+import './AddBtn.scss';
 
 const AddBtn = (props: IAddBtnProps) => {
   const { cardId } = props;
-  const { cards, favourites } = useTypedSelector((state) => state.list);
+
+  const { cards, favourites } = useTypedSelector((state) => state.cards);
+
+  const { addFavourite, removeFavourite } = cardsSlice.actions;
+  const dispatch = useAppDispatch();
+
   const [card] = cards.filter((item) => item.num === cardId);
-  const { addFavourite, removeFavourite } = useActions();
+
   const bool = favourites.filter((item) => item.num === cardId).length > 0;
   const [isFavourite, setFavourite] = useState<boolean>(bool);
 
   const clickAddFavourite = () => {
     setFavourite(true);
-    addFavourite(card);
+    dispatch(addFavourite(card));
   };
 
   const clickRemoveFavourite = () => {
     setFavourite(false);
-    removeFavourite(card);
+    dispatch(removeFavourite(card));
   };
 
   if (isFavourite) {

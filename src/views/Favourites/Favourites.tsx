@@ -1,10 +1,11 @@
-import './Favourites.scss';
 import { NavLink } from 'react-router-dom';
+
 import useTypedSelector from '../../hooks/useTypedSelector';
 import Favourite from './Favourite/Favourite';
+import './Favourites.scss';
 
 const Favourites = () => {
-  const { favourites } = useTypedSelector((state) => state.list);
+  const { favourites } = useTypedSelector((state) => state.cards);
 
   return (
     <section className="favourites">

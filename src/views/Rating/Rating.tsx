@@ -1,7 +1,8 @@
-import './Rating.scss';
 import { useEffect, useState } from 'react';
-import { ratingCard } from '../../types/common';
+
 import { getRating } from '../../utils/preserves3k6sAPI';
+import { ratingCard } from '../../types/common';
+import './Rating.scss';
 
 const Rating = () => {
   const [donaters, setDonaters] = useState<ratingCard[]>([]);

@@ -1,8 +1,6 @@
-import './Admin.scss';
 import { useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { IAdminAddFormData, IAdminRemoveFormData } from '../../types/interfaces';
-import useTypedSelector from '../../hooks/useTypedSelector';
+
 import {
   deleteBirdSpecies,
   getAllgenuses,
@@ -12,11 +10,16 @@ import {
   postBirdSpecies,
 } from '../../utils/preserves3k6sAPI';
 import { genusCard, preserveCard, protectStatusCard } from '../../types/common';
+import { IAdminAddFormData, IAdminRemoveFormData } from '../../types/interfaces';
+import useTypedSelector from '../../hooks/useTypedSelector';
+import './Admin.scss';
 
 const Admin = () => {
   const addForm = useForm<IAdminAddFormData>();
   const removeForm = useForm<IAdminRemoveFormData>();
-  const { cards } = useTypedSelector((state) => state.list);
+
+  const { cards } = useTypedSelector((state) => state.cards);
+
   const [isCompleteAdd, setIsCompleteAdd] = useState<boolean>(false);
   const [isCompleteRemove, setIsCompleteRemove] = useState<boolean>(false);
   const [statuses, setStatuses] = useState<protectStatusCard[]>([]);
@@ -117,11 +120,8 @@ const Admin = () => {
   };
 
   const onSubmitAdd: SubmitHandler<IAdminAddFormData> = (data) => {
-    const name = String(addForm.getValues('name'));
-    const length = addForm.getValues('length');
-    const weight = addForm.getValues('weight');
-    const wingspan = addForm.getValues('wingspan');
-    const description = addForm.getValues('description');
+    const { name, length, weight, wingspan, description } = data;
+
     const genusId = Number(addForm.getValues('genus'));
     const protectStatusId = Number(addForm.getValues('protectStatus'));
     const preserveId = Number(addForm.getValues('preserve'));
@@ -139,7 +139,7 @@ const Admin = () => {
     addForm.reset();
   };
 
-  const onSubmitRemove: SubmitHandler<IAdminRemoveFormData> = (data) => {
+  const onSubmitRemove: SubmitHandler<IAdminRemoveFormData> = () => {
     const speciesId = Number(removeForm.getValues('species'));
 
     removeBirdSpecies(speciesId);

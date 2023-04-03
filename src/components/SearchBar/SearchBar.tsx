@@ -1,12 +1,17 @@
-import './SearchBar.scss';
 import { useState } from 'react';
+
+import useAppDispatch from '../../hooks/useAppDispatch';
 import useTypedSelector from '../../hooks/useTypedSelector';
-import useActions from '../../hooks/useActions';
+import { cardsSlice } from '../../store/Cards/slices';
 import loupe from '../../assets/svg/loupe.svg';
+import './SearchBar.scss';
 
 const SearchBar = () => {
-  const { search } = useTypedSelector((state) => state.list);
-  const { updateSearch } = useActions();
+  const { search } = useTypedSelector((state) => state.cards);
+
+  const { updateSearch } = cardsSlice.actions;
+  const dispatch = useAppDispatch();
+
   const [input, setInput] = useState<string>(search);
 
   const onInput = (e: React.FormEvent<HTMLInputElement>) => {
@@ -14,7 +19,7 @@ const SearchBar = () => {
 
     const { value } = e.target as HTMLInputElement;
     setInput(value);
-    updateSearch(value);
+    dispatch(updateSearch(value));
   };
 
   return (

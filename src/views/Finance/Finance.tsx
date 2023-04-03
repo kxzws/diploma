@@ -1,14 +1,15 @@
-import './Finance.scss';
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import Chart from 'react-google-charts';
-import { financeCard } from '../../types/common';
+
 import { getFinance } from '../../utils/preserves3k6sAPI';
+import { financeCard } from '../../types/common';
+import './Finance.scss';
 
 const Finance = () => {
   const [finances, setFinances] = useState<financeCard[]>([]);
 
   useEffect(() => {
-    const getFinances = async () => {
+    const getFinancesFirst = async () => {
       const response = await getFinance();
       if (response === 'error') {
         console.log('error');
@@ -17,7 +18,7 @@ const Finance = () => {
         setFinances(donatersArr);
       }
     };
-    getFinances();
+    getFinancesFirst();
   }, []);
 
   const histogramData = [
@@ -66,7 +67,8 @@ const Finance = () => {
             return (
               <li key={item.presName} className="finance-item">
                 <span className="finance-name">{item.presName}</span> –{' '}
-                <i className={`finance-qty qty-${total < 0 ? 'neg' : 'pos'}`}>{total}</i> USD
+                <i className={`finance-qty qty-${total < 0 ? 'neg' : 'pos'}`}>{total.toFixed(3)}</i>{' '}
+                USD
               </li>
             );
           })}

@@ -1,29 +1,23 @@
-import './SignUp.scss';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
+
+import { registerUserData } from '../../utils/preserves3k6sAPI';
 import { ISignUpFormData } from '../../types/interfaces';
-import useTypedSelector from '../../hooks/useTypedSelector';
-import useActions from '../../hooks/useActions';
+import './SignUp.scss';
 
 const SignUp = () => {
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
-    getValues,
     reset,
     formState: { errors },
   } = useForm<ISignUpFormData>();
-  // const { isAuthorized } = useTypedSelector((state) => state.auth);
-  const { fetchRegisterData } = useActions();
 
   const onSubmit: SubmitHandler<ISignUpFormData> = (data) => {
-    const login = String(getValues('login'));
-    const password = String(getValues('password'));
-    const mail = String(getValues('mail'));
-    const phone = String(getValues('phone'));
+    const { login, password, mail, phone } = data;
 
-    fetchRegisterData(login, password, mail, phone);
+    registerUserData(login, password, mail, phone);
     reset();
     navigate('/list');
   };

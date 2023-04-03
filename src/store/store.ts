@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from './reducers/reducer';
+import rootReducer from './rootReducer';
 
 const middlewareConfig = {
   immutableCheck: false,
@@ -13,5 +13,7 @@ const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(middlewareConfig),
   devTools: isDevTools,
 });
+
+export type AppDispatch = typeof store.dispatch;
 
 export default store;
