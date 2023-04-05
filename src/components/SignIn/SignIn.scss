@@ -70,36 +70,5 @@
       opacity: 0.85;
       text-decoration: underline;
     }
-
-    .btn-submit {
-      margin: 0 auto;
-      padding: 10px 22px;
-      display: block;
-      color: $brown;
-      background-color: goldenrod;
-      border: none;
-      border-radius: 9px;
-
-      &:hover {
-        animation: bounce 0.8s infinite alternate;
-
-        &:disabled {
-          animation: none;
-        }
-      }
-
-      &:disabled {
-        color: rgba(0, 0, 0, 0.6);
-      }
-
-      @keyframes bounce {
-        from {
-          transform: scale(1);
-        }
-        to {
-          transform: scale(1.05);
-        }
-      }
-    }
   }
 }

@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import Chart from 'react-google-charts';
 
-import { getFinance } from '../../utils/preserves3k6sAPI';
+import { fetchFinance } from '../../utils/serverAPI';
 import { financeCard } from '../../types/common';
+import Loading from '../../components/Loading/Loading';
 import './Finance.scss';
 
 const Finance = () => {
@@ -10,7 +11,7 @@ const Finance = () => {
 
   useEffect(() => {
     const getFinancesFirst = async () => {
-      const response = await getFinance();
+      const response = await fetchFinance();
       if (response === 'error') {
         console.log('error');
       } else {
@@ -50,7 +51,7 @@ const Finance = () => {
           chartType="BarChart"
           width="1300px"
           height="600px"
-          loader={<div>Загрузка...</div>}
+          loader={<Loading />}
           data={histogramData}
           options={chartOptions}
         />

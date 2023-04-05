@@ -15,6 +15,11 @@ const Header = () => {
   const { clearFavourites } = cardsSlice.actions;
   const dispatch = useAppDispatch();
 
+  const onAnchorClick = () => {
+    dispatch(clearFavourites());
+    dispatch(logout());
+  };
+
   return (
     <header className="header">
       <div className="center-container">
@@ -30,26 +35,23 @@ const Header = () => {
         <NavLink to="/finance" className={({ isActive }) => (isActive ? 'active-link' : '')}>
           Финансы
         </NavLink>
-        {isAdmin && (
+        {isAdmin ? (
           <NavLink to="/admin" className={({ isActive }) => (isActive ? 'active-link' : '')}>
             Админка
           </NavLink>
-        )}
+        ) : null}
         <div />
         <NavLink
           to="/favourites"
           className={({ isActive }) => (isActive ? 'favs active-link' : 'favs')}
         >
-          Избранное ({favourites.length})
+          Избранное <span>{favourites.length}</span>
         </NavLink>
         {isAuthorized ? (
           <NavLink
             to="/"
             className={({ isActive }) => (isActive ? 'favs active-link' : 'favs')}
-            onClick={() => {
-              dispatch(clearFavourites());
-              dispatch(logout());
-            }}
+            onClick={onAnchorClick}
           >
             Выйти
           </NavLink>

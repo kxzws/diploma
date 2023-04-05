@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { getRating } from '../../utils/preserves3k6sAPI';
+import { fetchRating } from '../../utils/serverAPI';
 import { ratingCard } from '../../types/common';
 import './Rating.scss';
 
@@ -9,7 +9,7 @@ const Rating = () => {
 
   useEffect(() => {
     const getDonaters = async () => {
-      const response = await getRating();
+      const response = await fetchRating();
       if (response === 'error') {
         console.log('error');
       } else {
@@ -26,8 +26,7 @@ const Rating = () => {
         <h2 className="rating-title">Топ-3 донатеров</h2>
         <ul className="rating-list">
           {donaters.map((item, ind) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <li key={ind} className="rating-item">
+            <li key={`${ind + 1}${item.user}`} className="rating-item">
               <i className="rating-nick">{item.user}</i> -{' '}
               <b className="rating-amount">{item.amount}</b> USD
             </li>

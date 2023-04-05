@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { registerUserData } from '../../utils/preserves3k6sAPI';
+import { registerUserData } from '../../utils/serverAPI';
 import { ISignUpFormData } from '../../types/interfaces';
+import StyledButton from '../StyledButton/StyledButton';
 import './SignUp.scss';
 
 const SignUp = () => {
@@ -19,7 +20,7 @@ const SignUp = () => {
 
     registerUserData(login, password, mail, phone);
     reset();
-    navigate('/list');
+    navigate('/login');
   };
 
   return (
@@ -62,9 +63,12 @@ const SignUp = () => {
           />
           <p className={`form-error ${errors.phone ? null : 'none'}`}>*Обязательно</p>
 
-          <button type="submit" className="btn-submit">
-            Зарегистрироваться
-          </button>
+          <StyledButton
+            type="button"
+            buttonType="submit"
+            text="Зарегистрироваться"
+            onClick={(e) => {}}
+          />
         </form>
       </div>
     </section>

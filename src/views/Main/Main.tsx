@@ -1,5 +1,4 @@
-import { NavLink } from 'react-router-dom';
-
+import StyledButton from '../../components/StyledButton/StyledButton';
 import './Main.scss';
 
 const Main = () => {
@@ -16,7 +15,7 @@ const Main = () => {
             вымирания разнообразие видов, вносят существенный вклад в развитие науки и экологическое
             просвещение населения.
           </p>
-          <NavLink to="/list">Как помочь?</NavLink>
+          <StyledButton type="anchor" text="Как помочь?" to="/list" />
         </div>
       </div>
     </main>

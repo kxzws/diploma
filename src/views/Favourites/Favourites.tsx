@@ -1,6 +1,5 @@
-import { NavLink } from 'react-router-dom';
-
 import useTypedSelector from '../../hooks/useTypedSelector';
+import StyledButton from '../../components/StyledButton/StyledButton';
 import Favourite from './Favourite/Favourite';
 import './Favourites.scss';
 
@@ -17,7 +16,7 @@ const Favourites = () => {
           {favourites.length < 1 && <p className="favourites-warning">Избранных нет</p>}
         </ul>
       </div>
-      {favourites.length > 0 && <NavLink to="/donate">Помочь</NavLink>}
+      {favourites.length > 0 && <StyledButton type="anchor" text="Помочь" to="/donate" />}
     </section>
   );
 };

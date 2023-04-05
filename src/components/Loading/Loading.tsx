@@ -1,8 +1,13 @@
-import loading from '../../assets/spinner.gif';
+import { CircularProgress } from '@mui/material';
+
 import './Loading.scss';
 
 const Loading = () => {
-  return <img data-testid="loading" src={loading} alt="gif: loading" className="loading" />;
+  return (
+    <div className="loading">
+      <CircularProgress color="inherit" />
+    </div>
+  );
 };
 
 export default Loading;

@@ -20,7 +20,6 @@ type ratingCard = {
   amount: number;
 };
 
-
 type financeCard = {
   presName: string;
   annualStateBudget: number;

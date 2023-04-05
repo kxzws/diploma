@@ -5,45 +5,8 @@
   min-height: $min-height;
   background-color: $dark-grey;
 
-  .btn-backup {
-    margin: 0 auto;
-    margin-bottom: 24px;
-    padding: 14px 22px;
-    display: block;
-    color: $brown;
-    background-color: goldenrod;
-    border: none;
-    border-radius: 9px;
-
-    &:hover {
-      animation: bounce 0.8s infinite alternate;
-
-      &:disabled {
-        animation: none;
-      }
-    }
-
-    &:disabled {
-      color: rgba(0, 0, 0, 0.6);
-    }
-
-    &.btn-login {
-      max-width: 95px;
-    }
-
-    @keyframes bounce {
-      from {
-        transform: scale(1);
-      }
-      to {
-        transform: scale(1.05);
-      }
-    }
-  }
-
   .form {
-    margin: 0 auto;
-    margin-bottom: 24px;
+    margin: 24px auto;
     padding: 35px 70px;
     max-width: 50%;
     font-size: $text-font;
@@ -187,41 +150,6 @@
 
       .input-code {
         width: 90px;
-      }
-    }
-
-    .btn-submit {
-      margin: 0 auto;
-      padding: 14px 22px;
-      display: block;
-      color: $brown;
-      background-color: goldenrod;
-      border: none;
-      border-radius: 9px;
-
-      &:hover {
-        animation: bounce 0.8s infinite alternate;
-
-        &:disabled {
-          animation: none;
-        }
-      }
-
-      &:disabled {
-        color: rgba(0, 0, 0, 0.6);
-      }
-
-      &.btn-login {
-        max-width: 95px;
-      }
-
-      @keyframes bounce {
-        from {
-          transform: scale(1);
-        }
-        to {
-          transform: scale(1.05);
-        }
       }
     }
   }

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { getAllBirds } from '../../utils/preserves3k6sAPI';
+import { fetchAllBirds } from '../../utils/serverAPI';
 import { sortingType } from './types';
 
 export const getBirdCards = createAsyncThunk(
@@ -14,7 +14,7 @@ export const getBirdCards = createAsyncThunk(
   ) => {
     try {
       const { searchInp, sortTypeInp } = queryData;
-      const response = await getAllBirds(searchInp, sortTypeInp);
+      const response = await fetchAllBirds(searchInp, sortTypeInp);
 
       if (typeof response === 'string') throw Error(response);
 

@@ -1,0 +1,54 @@
+@import '../../App.variables.scss';
+
+.anchor {
+  margin: 0 auto;
+  padding: 13px 36px;
+  width: fit-content;
+  display: block;
+  font-size: $title-font - 2px;
+  font-weight: normal;
+  color: $brown;
+  background-color: $light-brown;
+  border-radius: 12px;
+
+  &:hover {
+    animation: bouncing 0.8s infinite alternate;
+  }
+
+  &:active {
+    animation: none;
+    transform: scale(0.95);
+  }
+}
+
+.button {
+  margin: 0 auto;
+  padding: 14px 22px;
+  width: fit-content;
+  display: block;
+  color: $brown;
+  background-color: goldenrod;
+  border: none;
+  border-radius: 9px;
+
+  &:hover {
+    animation: bouncing 0.8s infinite alternate;
+
+    &:disabled {
+      animation: none;
+    }
+  }
+
+  &:disabled {
+    color: rgba(0, 0, 0, 0.6);
+  }
+}
+
+@keyframes bouncing {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}

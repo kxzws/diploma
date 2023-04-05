@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
-import { getAllpreserves, postDonate } from '../../utils/preserves3k6sAPI';
+import { fetchAllPreserves, postDonate } from '../../utils/serverAPI';
 import { preserveCard } from '../../types/common';
 import { IDonateFormData } from '../../types/interfaces';
 import useAppDispatch from '../../hooks/useAppDispatch';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { cardsSlice } from '../../store/Cards/slices';
 import './DonateForm.scss';
+import StyledButton from '../../components/StyledButton/StyledButton';
 
 const DonateForm = () => {
   const {
@@ -28,7 +29,7 @@ const DonateForm = () => {
 
   useEffect(() => {
     const getPreserves = async () => {
-      const response = await getAllpreserves();
+      const response = await fetchAllPreserves();
       if (response === 'error') {
         console.log('error');
       } else {
@@ -155,13 +156,9 @@ const DonateForm = () => {
           </div>
 
           {!isAuthorized ? (
-            <NavLink to="/login" className="btn-submit btn-login">
-              Войти
-            </NavLink>
+            <StyledButton type="anchor" to="/login" text="Войти" isButtonStyle />
           ) : (
-            <button type="submit" className="btn-submit">
-              Отправить
-            </button>
+            <StyledButton type="button" buttonType="submit" text="Отправить" onClick={(e) => {}} />
           )}
         </form>
       </div>

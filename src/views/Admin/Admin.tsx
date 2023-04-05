@@ -3,15 +3,16 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 import {
   deleteBirdSpecies,
-  getAllgenuses,
-  getAllpreserves,
-  getAllstatuses,
+  fetchAllGenuses,
+  fetchAllPreserves,
+  fetchAllStatuses,
   makeBackup,
   postBirdSpecies,
-} from '../../utils/preserves3k6sAPI';
+} from '../../utils/serverAPI';
 import { genusCard, preserveCard, protectStatusCard } from '../../types/common';
 import { IAdminAddFormData, IAdminRemoveFormData } from '../../types/interfaces';
 import useTypedSelector from '../../hooks/useTypedSelector';
+import StyledButton from '../../components/StyledButton/StyledButton';
 import './Admin.scss';
 
 const Admin = () => {
@@ -28,7 +29,7 @@ const Admin = () => {
 
   useEffect(() => {
     const getStatuses = async () => {
-      const response = await getAllstatuses();
+      const response = await fetchAllStatuses();
       if (response === 'error') {
         console.log('error');
       } else {
@@ -37,7 +38,7 @@ const Admin = () => {
       }
     };
     const getGenuses = async () => {
-      const response = await getAllgenuses();
+      const response = await fetchAllGenuses();
       if (response === 'error') {
         console.log('error');
       } else {
@@ -46,7 +47,7 @@ const Admin = () => {
       }
     };
     const getPreserves = async () => {
-      const response = await getAllpreserves();
+      const response = await fetchAllPreserves();
       if (response === 'error') {
         console.log('error');
       } else {
@@ -149,15 +150,14 @@ const Admin = () => {
   return (
     <section className="admin-form">
       <div className="center-container">
-        <button
+        <StyledButton
           type="button"
-          className="btn-backup"
+          buttonType="button"
+          text="Бэкап в json"
           onClick={() => {
             makeBackupRequest();
           }}
-        >
-          Бэкап в json
-        </button>
+        />
 
         <form action="#" className="form" onSubmit={addForm.handleSubmit(onSubmitAdd)}>
           {isCompleteAdd && <p className="form-complete">Вид добавлен</p>}
@@ -273,9 +273,8 @@ const Admin = () => {
           <p className={`form-error ${addForm.formState.errors.preserve ? null : 'none'}`}>
             *Необходимо выбрать один из заповедников
           </p>
-          <button type="submit" className="btn-submit">
-            Добавить
-          </button>
+
+          <StyledButton type="button" buttonType="submit" text="Добавить" onClick={(e) => {}} />
         </form>
 
         <form action="#" className="form" onSubmit={removeForm.handleSubmit(onSubmitRemove)}>
@@ -300,9 +299,7 @@ const Admin = () => {
             *Необходимо выбрать один из видов
           </p>
 
-          <button type="submit" className="btn-submit">
-            Удалить
-          </button>
+          <StyledButton type="button" buttonType="submit" text="Удалить" onClick={(e) => {}} />
         </form>
       </div>
     </section>

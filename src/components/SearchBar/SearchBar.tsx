@@ -29,7 +29,7 @@ const SearchBar = () => {
         type="search"
         value={input}
         placeholder="Поиск"
-        onInput={(e) => onInput(e)}
+        onInput={onInput}
         className="search-bar"
       />
     </div>

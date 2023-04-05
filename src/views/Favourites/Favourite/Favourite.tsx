@@ -26,7 +26,7 @@ const Favourite = (props: IFavouriteProps) => {
         Статус защиты {parse(`<abbr title="${abbr}">${protectStatus}</abbr>`)}
       </p>
       <p className="favourite-desc">{description}</p>
-      <button type="button" className="favourite-btn" onClick={() => clickRemoveFavourite()}>
+      <button type="button" className="favourite-btn" onClick={clickRemoveFavourite}>
         x
       </button>
     </li>

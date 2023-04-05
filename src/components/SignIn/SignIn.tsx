@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
@@ -5,6 +6,8 @@ import { ILoginFormData } from '../../types/interfaces';
 import useAppDispatch from '../../hooks/useAppDispatch';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import { getLoginData } from '../../store/Auth/thunks';
+import StyledButton from '../StyledButton/StyledButton';
+import Loading from '../Loading/Loading';
 import './SignIn.scss';
 
 const SignIn = () => {
@@ -16,17 +19,22 @@ const SignIn = () => {
     reset,
     formState: { errors },
   } = useForm<ILoginFormData>();
-  const { isAuthorized } = useTypedSelector((state) => state.auth);
+  const { isLoading, isError, isAuthorized } = useTypedSelector((state) => state.auth);
 
   const dispatch = useAppDispatch();
 
-  const onSubmit: SubmitHandler<ILoginFormData> = (data) => {
-    const nick = String(getValues('login'));
-    const pass = String(getValues('password'));
+  const [isFailedLogin, setIsFailedLogin] = useState<boolean>(false);
 
-    dispatch(getLoginData({ nick, pass }));
-    reset();
-    navigate('/list');
+  const onSubmit: SubmitHandler<ILoginFormData> = (data) => {
+    const { login: nick, password: pass } = data;
+
+    dispatch(getLoginData({ nick, pass })).then(() => {
+      if (!isError && isAuthorized) {
+        reset();
+      } else {
+        setIsFailedLogin(true);
+      }
+    });
   };
 
   return (
@@ -34,8 +42,7 @@ const SignIn = () => {
       <div className="center-container">
         <form action="#" className="form" onSubmit={handleSubmit(onSubmit)}>
           <h2 className="form-title">Авторизация</h2>
-          {isAuthorized && <p className="auth-complete">Вы вошли</p>}
-          {!isAuthorized && <p className="auth-incomplete">Вы не вошли</p>}
+          {(isError || isFailedLogin) && <p className="auth-incomplete">Вы не вошли</p>}
 
           <input
             className={`form-input input-text ${errors.login ? 'input-error' : null}`}
@@ -59,9 +66,12 @@ const SignIn = () => {
           <NavLink to="/register" className="btn-register">
             Регистрация
           </NavLink>
-          <button type="submit" className="btn-submit">
-            Войти
-          </button>
+
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <StyledButton type="button" buttonType="submit" text="Войти" onClick={(e) => {}} />
+          )}
         </form>
       </div>
     </section>

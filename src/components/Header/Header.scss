@@ -32,12 +32,29 @@
       }
 
       &.active-link {
+        margin-bottom: -1px;
+        border-bottom: 1px solid;
         opacity: 1;
       }
 
       &.favs {
         display: inline-flex;
         align-items: center;
+
+        span {
+          margin-left: 12px;
+          padding: 4px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 32px;
+          width: 32px;
+          font-size: $subtitle-font;
+          font-weight: normal;
+          color: $brown;
+          background-color: #fff;
+          border-radius: 50%;
+        }
       }
     }
   }
