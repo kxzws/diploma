@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { fetchAllPreserves, postDonate } from '../../utils/serverAPI';
@@ -158,7 +157,7 @@ const DonateForm = () => {
           {!isAuthorized ? (
             <StyledButton type="anchor" to="/login" text="Войти" isButtonStyle />
           ) : (
-            <StyledButton type="button" buttonType="submit" text="Отправить" onClick={(e) => {}} />
+            <StyledButton type="button" buttonType="submit" text="Отправить" onClick={() => {}} />
           )}
         </form>
       </div>

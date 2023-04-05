@@ -8,7 +8,7 @@ const NotFound = () => {
 
   useEffect(() => {
     setTimeout(() => navigate('/list'), 3000);
-  }, []);
+  }, [navigate]);
 
   return (
     <section className="not-found">

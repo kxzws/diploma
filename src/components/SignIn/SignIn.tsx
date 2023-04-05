@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { ILoginFormData } from '../../types/interfaces';
@@ -11,11 +11,9 @@ import Loading from '../Loading/Loading';
 import './SignIn.scss';
 
 const SignIn = () => {
-  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
-    getValues,
     reset,
     formState: { errors },
   } = useForm<ILoginFormData>();
@@ -70,7 +68,7 @@ const SignIn = () => {
           {isLoading ? (
             <Loading />
           ) : (
-            <StyledButton type="button" buttonType="submit" text="Войти" onClick={(e) => {}} />
+            <StyledButton type="button" buttonType="submit" text="Войти" onClick={() => {}} />
           )}
         </form>
       </div>

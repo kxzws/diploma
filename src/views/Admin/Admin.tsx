@@ -274,7 +274,7 @@ const Admin = () => {
             *Необходимо выбрать один из заповедников
           </p>
 
-          <StyledButton type="button" buttonType="submit" text="Добавить" onClick={(e) => {}} />
+          <StyledButton type="button" buttonType="submit" text="Добавить" onClick={() => {}} />
         </form>
 
         <form action="#" className="form" onSubmit={removeForm.handleSubmit(onSubmitRemove)}>
@@ -299,7 +299,7 @@ const Admin = () => {
             *Необходимо выбрать один из видов
           </p>
 
-          <StyledButton type="button" buttonType="submit" text="Удалить" onClick={(e) => {}} />
+          <StyledButton type="button" buttonType="submit" text="Удалить" onClick={() => {}} />
         </form>
       </div>
     </section>

@@ -67,7 +67,7 @@ const SignUp = () => {
             type="button"
             buttonType="submit"
             text="Зарегистрироваться"
-            onClick={(e) => {}}
+            onClick={() => {}}
           />
         </form>
       </div>
