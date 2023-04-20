@@ -27,6 +27,7 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
     "sass": "^1.50.0",
+    "sloc": "^0.2.1",
     "typescript": "^4.6.3",
     "web-vitals": "^2.1.4"
   },
@@ -38,6 +39,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "sloc": "sloc -d -f cli-table -k total,source,comment -e assets/ src/",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
