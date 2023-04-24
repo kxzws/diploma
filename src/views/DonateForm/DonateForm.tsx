@@ -17,7 +17,7 @@ const DonateForm = () => {
     reset,
     formState: { errors },
   } = useForm<IDonateFormData>();
-  const { favourites } = useTypedSelector((state) => state.cards);
+  const { favourites, preserveNum } = useTypedSelector((state) => state.cards);
   const { nickname, isAuthorized } = useTypedSelector((state) => state.auth);
 
   const { clearFavourites } = cardsSlice.actions;
@@ -56,13 +56,13 @@ const DonateForm = () => {
   };
 
   const onSubmit: SubmitHandler<IDonateFormData> = (data) => {
-    const { preserve, donate } = data;
+    const { donate } = data;
     // const cardNumber = getValues('cardNumber');
     // const cardDate = getValues('cardDate');
     // const cardCVV = getValues('cardCVV');
 
     const speciesArr = favourites.map((item) => item.num);
-    sendDonate(speciesArr, preserve, donate);
+    sendDonate(speciesArr, preserveNum, donate);
     reset();
     dispatch(clearFavourites());
   };
@@ -84,23 +84,13 @@ const DonateForm = () => {
           </ul>
 
           <h3 className="form-subtitle">Заповедник</h3>
-          <select
-            className={`form-select ${errors.preserve ? 'select-error' : null}`}
-            defaultValue=""
-            {...register('preserve', { required: true })}
-          >
-            <option className="form-option" value="" disabled>
-              Не выбрано
-            </option>
-            {preserves.map((item) => (
-              <option key={item.num} className="form-option" value={item.num}>
-                {item.presName}
-              </option>
-            ))}
-          </select>
-          <p className={`form-error ${errors.preserve ? null : 'none'}`}>
-            *Необходимо выбрать один из заповедников
-          </p>
+          <ul className="form-list">
+            <li className="form-item">
+              {preserves.length > 0
+                ? preserves.find((pres) => pres.num === preserveNum)?.presName
+                : ''}
+            </li>
+          </ul>
 
           <h3 className="form-subtitle">Размер доната</h3>
           <label htmlFor="donate" className="form-label">

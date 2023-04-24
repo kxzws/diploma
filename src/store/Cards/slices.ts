@@ -9,6 +9,7 @@ const initialState: ICardsState = {
   isError: false,
   cards: [],
   search: '',
+  preserveNum: 1,
   sortType: sortingType.ASC,
   favourites: [],
 };
@@ -20,6 +21,10 @@ export const cardsSlice = createSlice({
     updateSearch(state, action: PayloadAction<string>) {
       const { payload } = action;
       state.search = payload;
+    },
+    changePreserve(state, action: PayloadAction<number>) {
+      const { payload } = action;
+      state.preserveNum = payload;
     },
     changeSortType(state, action: PayloadAction<sortingType.ASC | sortingType.DESC>) {
       const { payload } = action;

@@ -23,7 +23,7 @@ const Header = () => {
   return (
     <header className="header">
       <div className="center-container">
-        <NavLink to="/" className={({ isActive }) => (isActive ? 'active-link' : '')}>
+        <NavLink to="/" className={({ isActive }) => (isActive ? 'active-logo-link' : '')}>
           <img className="header-logo" src={birdImg} alt="logo: bird" />
         </NavLink>
         <NavLink to="/list" className={({ isActive }) => (isActive ? 'active-link' : '')}>

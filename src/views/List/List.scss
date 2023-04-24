@@ -5,6 +5,22 @@
   min-height: $min-height;
   background-color: $dark-grey;
 
+  .center-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .MuiFormLabel-root.Mui-focused {
+    color: #000;
+  }
+
+  .MuiInputBase-root.Mui-focused {
+    fieldset {
+      border-color: rgba(0, 0, 0, 0.65);
+    }
+  }
+
   .btns-container {
     margin-bottom: 25px;
     display: flex;
@@ -20,8 +36,21 @@
 
   .items-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
     row-gap: 40px;
+  }
+}
+
+.list-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 7px;
+
+  &.btn_ok {
+    background-color: rgba(133, 200, 133, 0.755);
+  }
+
+  &.btn_cancel {
   }
 }

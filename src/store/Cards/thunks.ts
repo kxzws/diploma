@@ -8,13 +8,14 @@ export const getBirdCards = createAsyncThunk(
   async (
     queryData: {
       searchInp: string;
+      preserveNumSel: number;
       sortTypeInp: sortingType.ASC | sortingType.DESC;
     },
     { rejectWithValue }
   ) => {
     try {
-      const { searchInp, sortTypeInp } = queryData;
-      const response = await fetchAllBirds(searchInp, sortTypeInp);
+      const { searchInp, preserveNumSel, sortTypeInp } = queryData;
+      const response = await fetchAllBirds(searchInp, preserveNumSel, sortTypeInp);
 
       if (typeof response === 'string') throw Error(response);
 

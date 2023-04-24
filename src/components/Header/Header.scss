@@ -31,10 +31,14 @@
         margin-right: 0;
       }
 
+      &.active-link,
+      &.active-logo-link {
+        opacity: 1;
+      }
+
       &.active-link {
         margin-bottom: -1px;
         border-bottom: 1px solid;
-        opacity: 1;
       }
 
       &.favs {

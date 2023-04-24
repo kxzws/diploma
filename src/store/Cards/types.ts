@@ -11,6 +11,7 @@ export interface ICardsState {
   isError: boolean;
   cards: birdCard[];
   search: string;
+  preserveNum: number;
   sortType: sortingType.ASC | sortingType.DESC;
   favourites: birdCard[];
 }

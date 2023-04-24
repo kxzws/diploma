@@ -13,13 +13,14 @@ import { API_URL } from './constants';
 
 export const fetchAllBirds = async (
   search: string,
+  preserveNum: number,
   sort: 'ASC' | 'DESC'
 ): Promise<string | birdCard[]> => {
   let getRequestURL: string;
   if (search) {
-    getRequestURL = `${API_URL}birds/${search}/${sort}`;
+    getRequestURL = `${API_URL}birds/${search}/${preserveNum}/${sort}`;
   } else {
-    getRequestURL = `${API_URL}birds/${sort}`;
+    getRequestURL = `${API_URL}birds/${preserveNum}/${sort}`;
   }
   const response: birdCard[] | string = await fetch(getRequestURL)
     .then((res) => res.json())

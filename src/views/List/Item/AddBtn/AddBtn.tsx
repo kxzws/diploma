@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { IAddBtnProps } from '../../../../types/interfaces';
 import useAppDispatch from '../../../../hooks/useAppDispatch';
@@ -14,30 +14,26 @@ const AddBtn = (props: IAddBtnProps) => {
   const { addFavourite, removeFavourite } = cardsSlice.actions;
   const dispatch = useAppDispatch();
 
-  const [card] = cards.filter((item) => item.num === cardId);
+  const card = cards.find((item) => item.num === cardId);
 
-  const bool = favourites.filter((item) => item.num === cardId).length > 0;
-  const [isFavourite, setFavourite] = useState<boolean>(bool);
+  const isFavourite = useMemo<boolean>(
+    () => favourites.find((item) => item.num === cardId) !== undefined,
+    [favourites, cardId]
+  );
 
   const clickAddFavourite = () => {
-    setFavourite(true);
-    dispatch(addFavourite(card));
+    if (card) dispatch(addFavourite(card));
   };
 
   const clickRemoveFavourite = () => {
-    setFavourite(false);
-    dispatch(removeFavourite(card));
+    if (card) dispatch(removeFavourite(card));
   };
 
-  if (isFavourite) {
-    return (
-      <button type="button" className="add-btn btn-active" onClick={() => clickRemoveFavourite()}>
-        –
-      </button>
-    );
-  }
-
-  return (
+  return isFavourite ? (
+    <button type="button" className="add-btn btn-active" onClick={() => clickRemoveFavourite()}>
+      –
+    </button>
+  ) : (
     <button type="button" className="add-btn" onClick={() => clickAddFavourite()}>
       +
     </button>
