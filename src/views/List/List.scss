@@ -23,9 +23,17 @@
   }
 
   .btns-container {
-    margin-bottom: 25px;
+    margin-bottom: 12px;
     display: flex;
     justify-content: center;
+  }
+
+  .list-descr {
+    margin: 0 auto;
+    margin-bottom: 25px;
+    max-width: 360px;
+    font-size: $descr-font;
+    text-align: center;
   }
 
   .list-warning {

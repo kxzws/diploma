@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { getBirdCards } from './thunks';
+import { sortByNeediness } from '../../utils/sortByNeediness';
 import { birdCard } from '../../types/common';
 import { ICardsState, sortingType } from './types';
 
@@ -10,7 +11,7 @@ const initialState: ICardsState = {
   cards: [],
   search: '',
   preserveNum: 1,
-  sortType: sortingType.ASC,
+  sortType: sortingType.NEEDY,
   favourites: [],
 };
 
@@ -26,7 +27,7 @@ export const cardsSlice = createSlice({
       const { payload } = action;
       state.preserveNum = payload;
     },
-    changeSortType(state, action: PayloadAction<sortingType.ASC | sortingType.DESC>) {
+    changeSortType(state, action: PayloadAction<sortingType>) {
       const { payload } = action;
       state.sortType = payload;
     },
@@ -50,7 +51,7 @@ export const cardsSlice = createSlice({
       })
       .addCase(getBirdCards.fulfilled, (state, action: PayloadAction<birdCard[]>) => {
         const { payload } = action;
-        state.cards = payload;
+        state.cards = state.sortType === sortingType.NEEDY ? sortByNeediness(payload) : payload;
         state.isLoading = false;
         state.isError = false;
       })

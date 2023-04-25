@@ -2,6 +2,7 @@ import { birdCard } from '../../types/common';
 
 // eslint-disable-next-line no-shadow
 export enum sortingType {
+  NEEDY = 'NEEDY',
   ASC = 'ASC',
   DESC = 'DESC',
 }
@@ -12,6 +13,6 @@ export interface ICardsState {
   cards: birdCard[];
   search: string;
   preserveNum: number;
-  sortType: sortingType.ASC | sortingType.DESC;
+  sortType: sortingType;
   favourites: birdCard[];
 }

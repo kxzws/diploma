@@ -5,7 +5,7 @@ import './SortBtn.scss';
 
 interface ISortBtnProps {
   className: string;
-  type: sortingType.ASC | sortingType.DESC;
+  type: sortingType;
 }
 
 const SortBtn = ({ className, type }: ISortBtnProps) => {

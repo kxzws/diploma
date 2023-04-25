@@ -9,7 +9,7 @@ export const getBirdCards = createAsyncThunk(
     queryData: {
       searchInp: string;
       preserveNumSel: number;
-      sortTypeInp: sortingType.ASC | sortingType.DESC;
+      sortTypeInp: sortingType;
     },
     { rejectWithValue }
   ) => {

@@ -1,3 +1,4 @@
+import { sortingType } from '../store/Cards/types';
 import {
   birdCard,
   errorAPI,
@@ -13,7 +14,7 @@ import {
 export const fetchAllBirds = async (
   search: string,
   preserveNum: number,
-  sort: 'ASC' | 'DESC'
+  sort: sortingType
 ): Promise<string | birdCard[]> => {
   let getRequestURL: string;
   if (search) {
@@ -49,13 +50,13 @@ export const fetchAllGenuses = async (): Promise<string | genusCard[]> => {
   return response;
 };
 
-export const fetchBirdByNum = async (num: number): Promise<string | birdCard> => {
+export const fetchBirdByNum = async (num: number): Promise<string | birdCard[]> => {
   const getRequestURL = `${process.env.REACT_APP_API_URL}birds/${num}`;
-  const response: birdCard | string = await fetch(getRequestURL)
+  const response: birdCard[] | string = await fetch(getRequestURL)
     .then((res) => res.json())
     .then(
       (result: birdCard[]) => {
-        return result[0];
+        return result;
       },
       (error: errorAPI) => {
         return 'error';

@@ -8,6 +8,11 @@ type birdCard = {
   weight: string | null;
   wingspan: string | null;
   description: string;
+  protectStatusCost: number;
+  presName: string;
+  speciesRepresQty: number;
+  presIncome: number;
+  presExpenses: number;
 };
 
 type genusCard = {

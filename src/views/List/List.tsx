@@ -114,15 +114,17 @@ const List = () => {
           <SearchBar />
 
           <div className="btns-container">
-            <SortBtn
-              className={`${sortType === sortingType.ASC ? 'btn-active' : null}`}
-              type={sortingType.ASC}
-            />
-            <SortBtn
-              className={`${sortType === sortingType.DESC ? 'btn-active' : null}`}
-              type={sortingType.DESC}
-            />
+            {Object.getOwnPropertyNames(sortingType).map((type) => (
+              <SortBtn
+                key={type}
+                className={`${sortType === type ? 'btn-active' : null}`}
+                type={type as sortingType}
+              />
+            ))}
           </div>
+          <p className="list-descr">
+            NEEDY – сортировка списка по убыванию нуждаемости вида в финансировании
+          </p>
 
           {isLoading && <Loading />}
           {isError && <p className="list-warning">Упс! Какая-то ошибка</p>}

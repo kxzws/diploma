@@ -69,6 +69,40 @@
           font-weight: normal;
         }
       }
+
+      table {
+        margin-top: 18px;
+        font-size: $descr-font;
+
+        thead {
+          background-color: rgba($dark-grey, 0.35);
+          font-weight: normal;
+
+          th {
+            padding: 12px 4px;
+            vertical-align: middle;
+          }
+        }
+
+        tbody {
+          tr:nth-of-type(2n) {
+            background-color: rgba($dark-grey, 0.1);
+          }
+
+          td {
+            padding: 6px 8px;
+            vertical-align: middle;
+
+            &:nth-of-type(n + 2) {
+              text-align: right;
+            }
+
+            &:last-of-type {
+              text-align: left;
+            }
+          }
+        }
+      }
     }
   }
 }
