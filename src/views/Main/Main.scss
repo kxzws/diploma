@@ -2,7 +2,8 @@
 
 .main {
   padding: 25px 0;
-  min-height: $min-height;
+  flex-shrink: 0;
+  flex-grow: 1;
   position: relative;
   overflow: hidden;
   color: #fff;

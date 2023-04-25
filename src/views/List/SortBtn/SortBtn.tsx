@@ -1,11 +1,14 @@
-import { ISortBtnProps } from '../../../types/interfaces';
 import useAppDispatch from '../../../hooks/useAppDispatch';
 import { cardsSlice } from '../../../store/Cards/slices';
+import { sortingType } from '../../../store/Cards/types';
 import './SortBtn.scss';
 
-const SortBtn = (props: ISortBtnProps) => {
-  const { className, type } = props;
+interface ISortBtnProps {
+  className: string;
+  type: sortingType.ASC | sortingType.DESC;
+}
 
+const SortBtn = ({ className, type }: ISortBtnProps) => {
   const { changeSortType } = cardsSlice.actions;
   const dispatch = useAppDispatch();
 
@@ -14,7 +17,7 @@ const SortBtn = (props: ISortBtnProps) => {
   };
 
   return (
-    <button type="button" className={`sort-btn ${className}`} onClick={() => updateSort()}>
+    <button type="button" className={`sort-btn ${className}`} onClick={updateSort}>
       {type}
     </button>
   );

@@ -1,12 +1,15 @@
 import parse from 'html-react-parser';
 
-import { IFavouriteProps } from '../../../types/interfaces';
+import { birdCard } from '../../../types/common';
 import useAppDispatch from '../../../hooks/useAppDispatch';
 import { cardsSlice } from '../../../store/Cards/slices';
 import './Favourite.scss';
 
-const Favourite = (props: IFavouriteProps) => {
-  const { data } = props;
+interface IFavouriteProps {
+  data: birdCard;
+}
+
+const Favourite = ({ data }: IFavouriteProps) => {
   const { title, interTitle, protectStatus, abbr, description } = data;
 
   const { removeFavourite } = cardsSlice.actions;

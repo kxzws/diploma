@@ -9,7 +9,6 @@ import {
   successPostAPI,
   userCard,
 } from '../types/common';
-import { API_URL } from './constants';
 
 export const fetchAllBirds = async (
   search: string,
@@ -18,9 +17,9 @@ export const fetchAllBirds = async (
 ): Promise<string | birdCard[]> => {
   let getRequestURL: string;
   if (search) {
-    getRequestURL = `${API_URL}birds/${search}/${preserveNum}/${sort}`;
+    getRequestURL = `${process.env.REACT_APP_API_URL}birds/${search}/${preserveNum}/${sort}`;
   } else {
-    getRequestURL = `${API_URL}birds/${preserveNum}/${sort}`;
+    getRequestURL = `${process.env.REACT_APP_API_URL}birds/${preserveNum}/${sort}`;
   }
   const response: birdCard[] | string = await fetch(getRequestURL)
     .then((res) => res.json())
@@ -36,7 +35,7 @@ export const fetchAllBirds = async (
 };
 
 export const fetchAllGenuses = async (): Promise<string | genusCard[]> => {
-  const getRequestURL = `${API_URL}genuses`;
+  const getRequestURL = `${process.env.REACT_APP_API_URL}genuses`;
   const response: genusCard[] | string = await fetch(getRequestURL)
     .then((res) => res.json())
     .then(
@@ -50,8 +49,23 @@ export const fetchAllGenuses = async (): Promise<string | genusCard[]> => {
   return response;
 };
 
+export const fetchBirdByNum = async (num: number): Promise<string | birdCard> => {
+  const getRequestURL = `${process.env.REACT_APP_API_URL}birds/${num}`;
+  const response: birdCard | string = await fetch(getRequestURL)
+    .then((res) => res.json())
+    .then(
+      (result: birdCard[]) => {
+        return result[0];
+      },
+      (error: errorAPI) => {
+        return 'error';
+      }
+    );
+  return response;
+};
+
 export const fetchAllStatuses = async (): Promise<string | protectStatusCard[]> => {
-  const getRequestURL = `${API_URL}statuses`;
+  const getRequestURL = `${process.env.REACT_APP_API_URL}statuses`;
   const response: protectStatusCard[] | string = await fetch(getRequestURL)
     .then((res) => res.json())
     .then(
@@ -75,7 +89,7 @@ export const postBirdSpecies = async (
   protectStatusId: number,
   preserveId: number
 ): Promise<string | successPostAPI[]> => {
-  const getRequestURL = `${API_URL}add-species`;
+  const getRequestURL = `${process.env.REACT_APP_API_URL}add-species`;
   const species = {
     name,
     length,
@@ -109,7 +123,7 @@ export const postBirdSpecies = async (
 };
 
 export const deleteBirdSpecies = async (speciesId: number): Promise<string | successPostAPI> => {
-  const getRequestURL = `${API_URL}delete-species/${speciesId}`;
+  const getRequestURL = `${process.env.REACT_APP_API_URL}delete-species/${speciesId}`;
   const requestOptions = {
     method: 'DELETE',
     headers: {
@@ -132,7 +146,7 @@ export const deleteBirdSpecies = async (speciesId: number): Promise<string | suc
 };
 
 export const fetchAllPreserves = async (): Promise<string | preserveCard[]> => {
-  const getRequestURL = `${API_URL}preserves`;
+  const getRequestURL = `${process.env.REACT_APP_API_URL}preserves`;
   const response: preserveCard[] | string = await fetch(getRequestURL)
     .then((res) => res.json())
     .then(
@@ -147,7 +161,7 @@ export const fetchAllPreserves = async (): Promise<string | preserveCard[]> => {
 };
 
 export const fetchRating = async (): Promise<string | ratingCard[]> => {
-  const getRequestURL = `${API_URL}rating`;
+  const getRequestURL = `${process.env.REACT_APP_API_URL}rating`;
   const response: ratingCard[] | string = await fetch(getRequestURL)
     .then((res) => res.json())
     .then(
@@ -162,7 +176,7 @@ export const fetchRating = async (): Promise<string | ratingCard[]> => {
 };
 
 export const fetchFinance = async (): Promise<string | financeCard[]> => {
-  const getRequestURL = `${API_URL}finance`;
+  const getRequestURL = `${process.env.REACT_APP_API_URL}finance`;
   const response: financeCard[] | string = await fetch(getRequestURL)
     .then((res) => res.json())
     .then(
@@ -177,7 +191,7 @@ export const fetchFinance = async (): Promise<string | financeCard[]> => {
 };
 
 export const loginUserData = async (nick: string, pass: string): Promise<string | userCard[]> => {
-  const getRequestURL = `${API_URL}login`;
+  const getRequestURL = `${process.env.REACT_APP_API_URL}login`;
   const user = {
     nick,
     pass,
@@ -210,7 +224,7 @@ export const registerUserData = async (
   mail: string,
   phone: string
 ): Promise<string | successPostAPI> => {
-  const getRequestURL = `${API_URL}register`;
+  const getRequestURL = `${process.env.REACT_APP_API_URL}register`;
   const user = {
     nick,
     pass,
@@ -245,7 +259,7 @@ export const postDonate = async (
   amount: number,
   nick: string
 ): Promise<string | successPostAPI> => {
-  const getRequestURL = `${API_URL}donate`;
+  const getRequestURL = `${process.env.REACT_APP_API_URL}donate`;
   const donate = {
     species,
     preserve,
@@ -275,7 +289,7 @@ export const postDonate = async (
 };
 
 export const makeBackup = async (): Promise<string | birdCard[]> => {
-  const getRequestURL = `${API_URL}backup`;
+  const getRequestURL = `${process.env.REACT_APP_API_URL}backup`;
   const response: birdCard[] | string = await fetch(getRequestURL)
     .then((res) => res.json())
     .then(

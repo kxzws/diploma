@@ -1,10 +1,3 @@
-import { sortingType } from '../store/Cards/types';
-import { birdCard } from './common';
-
-interface IFavouriteProps {
-  data: birdCard;
-}
-
 interface IDonateFormData {
   indexes: number[];
   preserve: number;
@@ -41,27 +34,10 @@ interface ISignUpFormData {
   phone: string;
 }
 
-interface ISortBtnProps {
-  className: string;
-  type: sortingType.ASC | sortingType.DESC;
-}
-
-interface IItemProps {
-  data: birdCard;
-}
-
-interface IAddBtnProps {
-  cardId: number;
-}
-
 export type {
-  IFavouriteProps,
   IDonateFormData,
   IAdminAddFormData,
   IAdminRemoveFormData,
   ILoginFormData,
   ISignUpFormData,
-  ISortBtnProps,
-  IItemProps,
-  IAddBtnProps,
 };

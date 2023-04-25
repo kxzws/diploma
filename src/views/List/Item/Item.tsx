@@ -1,30 +1,33 @@
 import parse from 'html-react-parser';
+import { NavLink } from 'react-router-dom';
 
-import { IItemProps } from '../../../types/interfaces';
-import { IMAGE_PATH } from '../../../utils/constants';
+import { birdCard } from '../../../types/common';
 import AddBtn from './AddBtn/AddBtn';
 import './Item.scss';
 
-const Item = (props: IItemProps) => {
-  const { data } = props;
+interface IItemProps {
+  data: birdCard;
+}
+
+const Item = ({ data }: IItemProps) => {
   const { num, title, interTitle, protectStatus, abbr, length, weight, wingspan, description } =
     data;
 
   return (
     <div className="item">
-      <img src={`${IMAGE_PATH}${num}.jpg`} alt={title} className="item-img" />
+      <img src={`${process.env.REACT_APP_IMAGES_URL}${num}.jpg`} alt={title} className="item-img" />
       <div className="item-body">
         <AddBtn cardId={num} />
         <h2 className="item-title">
           {title} <span>(лат. {interTitle})</span>
         </h2>
-        <p className="item-desc desc-protect">
+        <p className="item-desc desc_protect">
           Статус защиты {parse(`<abbr title="${abbr}">${protectStatus}</abbr>`)}
         </p>
-        <p className="item-desc">{length ? `Примерная длина туловища ${length} м` : null} </p>
-        <p className="item-desc">{weight ? `Средний вес ${weight} г` : null}</p>
-        <p className="item-desc">{wingspan ? `Размах крыльев ${wingspan} метра` : null}</p>
-        <p className="item-desc">{description}</p>
+
+        <NavLink className="item-desc desc_link" to={`/list/${num}`}>
+          Подробнее...
+        </NavLink>
       </div>
     </div>
   );

@@ -8,6 +8,7 @@ import Favourites from './views/Favourites/Favourites';
 import DonateForm from './views/DonateForm/DonateForm';
 import Main from './views/Main/Main';
 import List from './views/List/List';
+import ItemPage from './views/ItemPage/ItemPage';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import NotFound from './components/NotFound/NotFound';
@@ -30,6 +31,7 @@ const App = () => {
         {isAdmin && <Route path="/admin" element={<Admin />} />}
 
         <Route path="/list" element={<List />} />
+        <Route path="/list/:birdId" element={<ItemPage />} />
 
         <Route path="/rating" element={<Rating />} />
 

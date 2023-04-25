@@ -1,14 +1,15 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 
-import { IAddBtnProps } from '../../../../types/interfaces';
 import useAppDispatch from '../../../../hooks/useAppDispatch';
 import useTypedSelector from '../../../../hooks/useTypedSelector';
 import { cardsSlice } from '../../../../store/Cards/slices';
 import './AddBtn.scss';
 
-const AddBtn = (props: IAddBtnProps) => {
-  const { cardId } = props;
+interface IAddBtnProps {
+  cardId: number;
+}
 
+const AddBtn = ({ cardId }: IAddBtnProps) => {
   const { cards, favourites } = useTypedSelector((state) => state.cards);
 
   const { addFavourite, removeFavourite } = cardsSlice.actions;

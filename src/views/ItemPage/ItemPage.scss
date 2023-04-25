@@ -1,0 +1,74 @@
+@import '../../App.variables.scss';
+
+.item-page {
+  padding: 30px 0;
+  flex-shrink: 0;
+  flex-grow: 1;
+  background-color: $dark-grey;
+
+  .item-warning {
+    margin-bottom: 20px;
+    font-size: $title-font;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .item-card {
+    padding-bottom: 10px;
+    display: flex;
+    column-gap: 30px;
+    position: relative;
+    background-color: $milk;
+    border-radius: 8px;
+
+    .item-img {
+      height: 240px;
+      width: 320px;
+
+      img {
+        object-fit: cover;
+        border-top-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+    }
+
+    .item-body {
+      padding: 30px 60px;
+      max-width: 60%;
+      color: $brown;
+
+      .item-title {
+        margin-bottom: 12px;
+        font-weight: bold;
+
+        span {
+          font-weight: normal;
+          font-style: italic;
+        }
+      }
+
+      .item-desc {
+        margin-bottom: 6px;
+        font-size: $descr-font;
+        line-height: 18px;
+        opacity: 0.65;
+
+        &.desc_protect {
+          margin-bottom: 10px;
+          font-weight: normal;
+          font-style: italic;
+          color: $dark-green;
+
+          abbr {
+            font-weight: bold;
+            cursor: pointer;
+          }
+        }
+
+        &.desc_long {
+          font-weight: normal;
+        }
+      }
+    }
+  }
+}
