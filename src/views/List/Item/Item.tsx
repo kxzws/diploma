@@ -10,8 +10,7 @@ interface IItemProps {
 }
 
 const Item = ({ data }: IItemProps) => {
-  const { num, title, interTitle, protectStatus, abbr, length, weight, wingspan, description } =
-    data;
+  const { num, title, interTitle, protectStatus, abbr } = data;
 
   return (
     <div className="item">

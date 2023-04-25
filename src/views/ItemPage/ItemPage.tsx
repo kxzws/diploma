@@ -4,19 +4,11 @@ import { useEffect, useState } from 'react';
 
 import { fetchBirdByNum } from '../../utils/serverAPI';
 import { birdCard } from '../../types/common';
-import useAppDispatch from '../../hooks/useAppDispatch';
-import useTypedSelector from '../../hooks/useTypedSelector';
-import { cardsSlice } from '../../store/Cards/slices';
 import AddBtn from '../List/Item/AddBtn/AddBtn';
 import './ItemPage.scss';
 
 const ItemPage = () => {
   const { birdId } = useParams();
-
-  // const {} = useTypedSelector((state) => state.cards);
-
-  // const {} = cardsSlice.actions;
-  // const dispatch = useAppDispatch();
 
   const [bird, setBird] = useState<birdCard>();
 
