@@ -14,7 +14,6 @@ const SignIn = () => {
   const {
     register,
     handleSubmit,
-    reset,
     formState: { errors },
   } = useForm<ILoginFormData>();
   const { isLoading, isError, isAuthorized } = useTypedSelector((state) => state.auth);
@@ -27,9 +26,7 @@ const SignIn = () => {
     const { login: nick, password: pass } = data;
 
     dispatch(getLoginData({ nick, pass })).then(() => {
-      if (!isError && isAuthorized) {
-        reset();
-      } else {
+      if (isError && !isAuthorized) {
         setIsFailedLogin(true);
       }
     });

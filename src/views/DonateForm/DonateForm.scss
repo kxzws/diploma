@@ -6,6 +6,23 @@
   flex-grow: 1;
   background-color: $dark-grey;
 
+  .donate-form__warning {
+    text-align: center;
+
+    h2 {
+      font-size: $header * 2;
+    }
+
+    p {
+      margin-bottom: 12px;
+      font-size: $big-title;
+    }
+
+    a {
+      text-decoration: underline;
+    }
+  }
+
   .form {
     margin: 0 auto;
     padding: 35px 70px;

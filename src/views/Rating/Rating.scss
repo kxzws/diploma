@@ -14,17 +14,41 @@
 
   .rating-list {
     margin-left: 18px;
+    display: flex;
+    justify-content: space-around;
 
     .rating-item {
       margin-bottom: 7px;
+      width: 16%;
+      position: relative;
+      text-align: center;
+
+      &::after {
+        content: '';
+        height: 60%;
+        width: 100%;
+        left: 0;
+        position: absolute;
+        background-color: $brown;
+      }
 
       .rating-amount,
       .rating-nick {
         font-weight: normal;
+        display: block;
+      }
+
+      .rating-amount {
+        font-size: $big-title;
       }
 
       &:nth-child(1) {
         font-size: $big-title + 12px;
+        order: 2;
+
+        &::after {
+          height: 140%;
+        }
 
         .rating-nick {
           color: goldenrod;
@@ -32,7 +56,12 @@
       }
 
       &:nth-child(2) {
-        font-size: $big-title + 8px;
+        font-size: $big-title + 6px;
+        order: 1;
+
+        &::after {
+          height: 100%;
+        }
 
         .rating-nick {
           color: silver;
@@ -40,7 +69,8 @@
       }
 
       &:nth-child(3) {
-        font-size: $big-title + 4px;
+        font-size: $big-title + 3px;
+        order: 3;
 
         .rating-nick {
           color: coral;

@@ -27,8 +27,8 @@ const Rating = () => {
         <ul className="rating-list">
           {donaters.map((item, ind) => (
             <li key={`${ind + 1}${item.user}`} className="rating-item">
-              <i className="rating-nick">{item.user}</i> -{' '}
-              <b className="rating-amount">{item.amount}</b> USD
+              <i className="rating-nick">{item.user}</i>
+              <b className="rating-amount">{item.amount} USD</b>
             </li>
           ))}
         </ul>
