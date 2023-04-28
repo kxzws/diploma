@@ -57,7 +57,8 @@
     "default-param-last": "off",
     "no-param-reassign": "off",
     "no-console": "off",
-    "react/button-has-type": "off"
+    "react/button-has-type": "off",
+    "@typescript-eslint/no-var-requires": 0
   },
   "settings": {
     "react": {

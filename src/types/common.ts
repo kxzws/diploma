@@ -13,6 +13,7 @@ type birdCard = {
   speciesRepresQty: number;
   presIncome: number;
   presExpenses: number;
+  donates: string | null;
 };
 
 type genusCard = {

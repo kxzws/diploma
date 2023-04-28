@@ -6,15 +6,22 @@
   flex-grow: 1;
   background-color: $dark-grey;
 
+  .admin-panel {
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-around;
+  }
+
   .form {
-    margin: 24px auto;
     padding: 35px 70px;
-    max-width: 50%;
+    height: fit-content;
+    width: 46%;
     font-size: $text-font;
     font-weight: normal;
     color: $brown;
     background-color: $milk;
     border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
     .form-complete {
       margin-bottom: 22px;

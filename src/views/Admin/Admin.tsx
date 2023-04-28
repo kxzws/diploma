@@ -159,148 +159,152 @@ const Admin = () => {
           }}
         />
 
-        <form action="#" className="form" onSubmit={addForm.handleSubmit(onSubmitAdd)}>
-          {isCompleteAdd && <p className="form-complete">Вид добавлен</p>}
-          <h2 className="form-title">Добавить вид птиц</h2>
-          <input
-            className={`form-input input-text ${
-              addForm.formState.errors.name ? 'input-error' : null
-            }`}
-            placeholder="Название"
-            {...addForm.register('name', { required: true, maxLength: 98 })}
-          />
-          <p className={`form-error ${addForm.formState.errors.name ? null : 'none'}`}>
-            *Обязательно
-          </p>
-
-          <label htmlFor="length" className="form-label">
+        <article className="admin-panel">
+          <form action="#" className="form" onSubmit={addForm.handleSubmit(onSubmitAdd)}>
+            {isCompleteAdd && <p className="form-complete">Вид добавлен</p>}
+            <h2 className="form-title">Добавить вид птиц</h2>
             <input
-              id="length"
-              type="number"
-              min="0"
-              className="form-input input-number"
-              placeholder="Длина"
-              {...addForm.register('length')}
+              className={`form-input input-text ${
+                addForm.formState.errors.name ? 'input-error' : null
+              }`}
+              placeholder="Название"
+              {...addForm.register('name', { required: true, maxLength: 98 })}
             />
-            метр(ов)
-          </label>
+            <p className={`form-error ${addForm.formState.errors.name ? null : 'none'}`}>
+              *Обязательно
+            </p>
 
-          <label htmlFor="weight" className="form-label">
+            <label htmlFor="length" className="form-label">
+              <input
+                id="length"
+                type="number"
+                min="0"
+                className="form-input input-number"
+                placeholder="Длина"
+                {...addForm.register('length')}
+              />
+              метр(ов)
+            </label>
+
+            <label htmlFor="weight" className="form-label">
+              <input
+                id="weight"
+                type="number"
+                min="0"
+                className="form-input input-number"
+                placeholder="Вес"
+                {...addForm.register('weight')}
+              />
+              грамм(ов)
+            </label>
+
+            <label htmlFor="wingspan" className="form-label">
+              <input
+                id="wingspan"
+                type="number"
+                min="0"
+                className="form-input input-number"
+                placeholder="Размах крыльев"
+                {...addForm.register('wingspan')}
+              />
+              метр(ов)
+            </label>
+
+            <h3 className="form-subtitle">Краткое описание</h3>
             <input
-              id="weight"
-              type="number"
-              min="0"
-              className="form-input input-number"
-              placeholder="Вес"
-              {...addForm.register('weight')}
+              className="form-input input-text input-descr"
+              {...addForm.register('description')}
             />
-            грамм(ов)
-          </label>
 
-          <label htmlFor="wingspan" className="form-label">
-            <input
-              id="wingspan"
-              type="number"
-              min="0"
-              className="form-input input-number"
-              placeholder="Размах крыльев"
-              {...addForm.register('wingspan')}
-            />
-            метр(ов)
-          </label>
-
-          <h3 className="form-subtitle">Краткое описание</h3>
-          <input
-            className="form-input input-text input-descr"
-            {...addForm.register('description')}
-          />
-
-          <h3 className="form-subtitle">Защитный статус</h3>
-          <select
-            className={`form-select ${
-              addForm.formState.errors.protectStatus ? 'select-error' : null
-            }`}
-            defaultValue=""
-            {...addForm.register('protectStatus', { required: true })}
-          >
-            <option className="form-option" value="" disabled>
-              Не выбрано
-            </option>
-            {statuses.map((item) => (
-              <option key={item.num} className="form-option" value={item.num}>
-                {item.longName}
+            <h3 className="form-subtitle">Защитный статус</h3>
+            <select
+              className={`form-select ${
+                addForm.formState.errors.protectStatus ? 'select-error' : null
+              }`}
+              defaultValue=""
+              {...addForm.register('protectStatus', { required: true })}
+            >
+              <option className="form-option" value="" disabled>
+                Не выбрано
               </option>
-            ))}
-          </select>
-          <p className={`form-error ${addForm.formState.errors.protectStatus ? null : 'none'}`}>
-            *Необходимо выбрать один из защитных статусов
-          </p>
+              {statuses.map((item) => (
+                <option key={item.num} className="form-option" value={item.num}>
+                  {item.longName}
+                </option>
+              ))}
+            </select>
+            <p className={`form-error ${addForm.formState.errors.protectStatus ? null : 'none'}`}>
+              *Необходимо выбрать один из защитных статусов
+            </p>
 
-          <h3 className="form-subtitle">Род</h3>
-          <select
-            className={`form-select ${addForm.formState.errors.genus ? 'select-error' : null}`}
-            defaultValue=""
-            {...addForm.register('genus', { required: true })}
-          >
-            <option className="form-option" value="" disabled>
-              Не выбрано
-            </option>
-            {genuses.map((item) => (
-              <option key={item.num} className="form-option" value={item.num}>
-                {item.genusName}
+            <h3 className="form-subtitle">Род</h3>
+            <select
+              className={`form-select ${addForm.formState.errors.genus ? 'select-error' : null}`}
+              defaultValue=""
+              {...addForm.register('genus', { required: true })}
+            >
+              <option className="form-option" value="" disabled>
+                Не выбрано
               </option>
-            ))}
-          </select>
-          <p className={`form-error ${addForm.formState.errors.genus ? null : 'none'}`}>
-            *Необходимо выбрать один из родов
-          </p>
+              {genuses.map((item) => (
+                <option key={item.num} className="form-option" value={item.num}>
+                  {item.genusName}
+                </option>
+              ))}
+            </select>
+            <p className={`form-error ${addForm.formState.errors.genus ? null : 'none'}`}>
+              *Необходимо выбрать один из родов
+            </p>
 
-          <h3 className="form-subtitle">Заповедник</h3>
-          <select
-            className={`form-select ${addForm.formState.errors.preserve ? 'select-error' : null}`}
-            defaultValue=""
-            {...addForm.register('preserve', { required: true })}
-          >
-            <option className="form-option" value="" disabled>
-              Не выбрано
-            </option>
-            {preserves.map((item) => (
-              <option key={item.num} className="form-option" value={item.num}>
-                {item.presName}
+            <h3 className="form-subtitle">Заповедник</h3>
+            <select
+              className={`form-select ${addForm.formState.errors.preserve ? 'select-error' : null}`}
+              defaultValue=""
+              {...addForm.register('preserve', { required: true })}
+            >
+              <option className="form-option" value="" disabled>
+                Не выбрано
               </option>
-            ))}
-          </select>
-          <p className={`form-error ${addForm.formState.errors.preserve ? null : 'none'}`}>
-            *Необходимо выбрать один из заповедников
-          </p>
+              {preserves.map((item) => (
+                <option key={item.num} className="form-option" value={item.num}>
+                  {item.presName}
+                </option>
+              ))}
+            </select>
+            <p className={`form-error ${addForm.formState.errors.preserve ? null : 'none'}`}>
+              *Необходимо выбрать один из заповедников
+            </p>
 
-          <StyledButton type="button" buttonType="submit" text="Добавить" onClick={() => {}} />
-        </form>
+            <StyledButton type="button" buttonType="submit" text="Добавить" onClick={() => {}} />
+          </form>
 
-        <form action="#" className="form" onSubmit={removeForm.handleSubmit(onSubmitRemove)}>
-          {isCompleteRemove && <p className="form-complete">Вид удалён</p>}
+          <form action="#" className="form" onSubmit={removeForm.handleSubmit(onSubmitRemove)}>
+            {isCompleteRemove && <p className="form-complete">Вид удалён</p>}
 
-          <h2 className="form-title">Удалить вид птиц</h2>
-          <select
-            className={`form-select ${removeForm.formState.errors.species ? 'select-error' : null}`}
-            defaultValue=""
-            {...removeForm.register('species', { required: true })}
-          >
-            <option className="form-option" value="" disabled>
-              Не выбрано
-            </option>
-            {cards.map((item) => (
-              <option key={item.num} className="form-option" value={item.num}>
-                {item.title}
+            <h2 className="form-title">Удалить вид птиц</h2>
+            <select
+              className={`form-select ${
+                removeForm.formState.errors.species ? 'select-error' : null
+              }`}
+              defaultValue=""
+              {...removeForm.register('species', { required: true })}
+            >
+              <option className="form-option" value="" disabled>
+                Не выбрано
               </option>
-            ))}
-          </select>
-          <p className={`form-error ${removeForm.formState.errors.species ? null : 'none'}`}>
-            *Необходимо выбрать один из видов
-          </p>
+              {cards.map((item) => (
+                <option key={item.num} className="form-option" value={item.num}>
+                  {item.title}
+                </option>
+              ))}
+            </select>
+            <p className={`form-error ${removeForm.formState.errors.species ? null : 'none'}`}>
+              *Необходимо выбрать один из видов
+            </p>
 
-          <StyledButton type="button" buttonType="submit" text="Удалить" onClick={() => {}} />
-        </form>
+            <StyledButton type="button" buttonType="submit" text="Удалить" onClick={() => {}} />
+          </form>
+        </article>
       </div>
     </section>
   );
