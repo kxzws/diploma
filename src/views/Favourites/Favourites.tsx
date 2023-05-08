@@ -4,6 +4,7 @@ import Favourite from './Favourite/Favourite';
 import './Favourites.scss';
 
 const Favourites = () => {
+  const { isAuthorized } = useTypedSelector((state) => state.auth);
   const { favourites } = useTypedSelector((state) => state.cards);
 
   return (
@@ -16,7 +17,10 @@ const Favourites = () => {
           {favourites.length < 1 && <p className="favourites-warning">Избранных нет</p>}
         </ul>
       </div>
-      {favourites.length > 0 && <StyledButton type="anchor" text="Помочь" to="/donate" />}
+      {isAuthorized && favourites.length > 0 && (
+        <StyledButton type="anchor" text="Помочь" to="/donate" />
+      )}
+      {!isAuthorized && <StyledButton type="anchor" to="/login" text="Войти" isButtonStyle />}
     </section>
   );
 };

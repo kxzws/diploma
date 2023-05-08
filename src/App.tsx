@@ -33,9 +33,8 @@ const App = () => {
         <Route path="/list" element={<List />} />
         <Route path="/list/:birdId" element={<ItemPage />} />
 
-        <Route path="/rating" element={<Rating />} />
-
-        <Route path="/finance" element={<Finance />} />
+        {isAuthorized && <Route path="/rating" element={<Rating />} />}
+        {isAuthorized && <Route path="/finance" element={<Finance />} />}
 
         <Route path="/favourites" element={<Favourites />} />
 

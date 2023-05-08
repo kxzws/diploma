@@ -29,12 +29,16 @@ const Header = () => {
         <NavLink to="/list" className={({ isActive }) => (isActive ? 'active-link' : '')}>
           Помочь
         </NavLink>
-        <NavLink to="/rating" className={({ isActive }) => (isActive ? 'active-link' : '')}>
-          Рейтинг
-        </NavLink>
-        <NavLink to="/finance" className={({ isActive }) => (isActive ? 'active-link' : '')}>
-          Финансы
-        </NavLink>
+        {isAuthorized ? (
+          <NavLink to="/rating" className={({ isActive }) => (isActive ? 'active-link' : '')}>
+            Рейтинг
+          </NavLink>
+        ) : null}
+        {isAuthorized ? (
+          <NavLink to="/finance" className={({ isActive }) => (isActive ? 'active-link' : '')}>
+            Финансы
+          </NavLink>
+        ) : null}
         {isAdmin ? (
           <NavLink to="/admin" className={({ isActive }) => (isActive ? 'active-link' : '')}>
             Админка
