@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import {
@@ -11,6 +11,9 @@ import {
 } from '../../utils/serverAPI';
 import { genusCard, preserveCard, protectStatusCard } from '../../types/common';
 import { IAdminAddFormData, IAdminRemoveFormData } from '../../types/interfaces';
+import { cardsSlice } from '../../store/Cards/slices';
+import { getBirdCards } from '../../store/Cards/thunks';
+import useAppDispatch from '../../hooks/useAppDispatch';
 import useTypedSelector from '../../hooks/useTypedSelector';
 import StyledButton from '../../components/StyledButton/StyledButton';
 import './Admin.scss';
@@ -19,10 +22,14 @@ const Admin = () => {
   const addForm = useForm<IAdminAddFormData>();
   const removeForm = useForm<IAdminRemoveFormData>();
 
-  const { cards } = useTypedSelector((state) => state.cards);
+  const { cards, search, preserveNum, sortType } = useTypedSelector((state) => state.cards);
+
+  const { changePreserve, clearFavourites } = cardsSlice.actions;
+  const dispatch = useAppDispatch();
 
   const [isCompleteAdd, setIsCompleteAdd] = useState<boolean>(false);
   const [isCompleteRemove, setIsCompleteRemove] = useState<boolean>(false);
+  const [preserveNumValue, setPreserveNumValue] = useState<string>(preserveNum.toString());
   const [statuses, setStatuses] = useState<protectStatusCard[]>([]);
   const [genuses, setGenuses] = useState<genusCard[]>([]);
   const [preserves, setPreserves] = useState<preserveCard[]>([]);
@@ -60,6 +67,20 @@ const Admin = () => {
     getGenuses();
     getPreserves();
   }, []);
+
+  useEffect(() => {
+    dispatch(
+      getBirdCards({ searchInp: search, preserveNumSel: preserveNum, sortTypeInp: sortType })
+    );
+  }, [search, preserveNum, sortType, dispatch]);
+
+  const onChangePreserve = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    e.preventDefault();
+
+    setPreserveNumValue(e.target.value);
+    dispatch(changePreserve(Number(e.target.value)));
+    dispatch(clearFavourites());
+  };
 
   const toggleCompleteAdd = () => {
     setIsCompleteAdd(true);
@@ -120,32 +141,35 @@ const Admin = () => {
     }
   };
 
-  const onSubmitAdd: SubmitHandler<IAdminAddFormData> = (data) => {
-    const { name, length, weight, wingspan, description } = data;
+  const onSubmitAdd: SubmitHandler<IAdminAddFormData> = useCallback(
+    (data) => {
+      const { name, length, weight, wingspan, description } = data;
 
-    const genusId = Number(addForm.getValues('genus'));
-    const protectStatusId = Number(addForm.getValues('protectStatus'));
-    const preserveId = Number(addForm.getValues('preserve'));
+      const genusId = Number(addForm.getValues('genus'));
+      const protectStatusId = Number(addForm.getValues('protectStatus'));
+      const preserveId = Number(preserveNumValue);
 
-    sendBirdSpecies(
-      name,
-      length,
-      weight,
-      wingspan,
-      description,
-      genusId,
-      protectStatusId,
-      preserveId
-    );
-    addForm.reset();
-  };
+      sendBirdSpecies(
+        name,
+        length,
+        weight,
+        wingspan,
+        description,
+        genusId,
+        protectStatusId,
+        preserveId
+      );
+      addForm.reset();
+    },
+    [addForm, preserveNumValue]
+  );
 
-  const onSubmitRemove: SubmitHandler<IAdminRemoveFormData> = () => {
+  const onSubmitRemove: SubmitHandler<IAdminRemoveFormData> = useCallback(() => {
     const speciesId = Number(removeForm.getValues('species'));
 
     removeBirdSpecies(speciesId);
     removeForm.reset();
-  };
+  }, [removeForm]);
 
   return (
     <section className="admin-form">
@@ -258,22 +282,17 @@ const Admin = () => {
 
             <h3 className="form-subtitle">Заповедник</h3>
             <select
-              className={`form-select ${addForm.formState.errors.preserve ? 'select-error' : null}`}
-              defaultValue=""
-              {...addForm.register('preserve', { required: true })}
+              className="form-select"
+              value={preserves.length > 0 ? preserveNumValue.toString() : ''}
+              onChange={onChangePreserve}
             >
-              <option className="form-option" value="" disabled>
-                Не выбрано
-              </option>
-              {preserves.map((item) => (
-                <option key={item.num} className="form-option" value={item.num}>
-                  {item.presName}
-                </option>
-              ))}
+              {!!preserves.length &&
+                preserves.map((item) => (
+                  <option key={item.num} className="form-option" value={item.num}>
+                    {item.presName}
+                  </option>
+                ))}
             </select>
-            <p className={`form-error ${addForm.formState.errors.preserve ? null : 'none'}`}>
-              *Необходимо выбрать один из заповедников
-            </p>
 
             <StyledButton type="button" buttonType="submit" text="Добавить" onClick={() => {}} />
           </form>

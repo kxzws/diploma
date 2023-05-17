@@ -15,7 +15,6 @@ interface IAdminAddFormData {
   description: string | null;
   genus: number;
   protectStatus: number;
-  preserve: number;
 }
 
 interface IAdminRemoveFormData {
