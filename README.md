@@ -1,9 +1,10 @@
 # Getting Started
-Clone or download this repo and run `npm start` in the project directory.
-**Note: you have to install *npm* to successfully init this project**
+Clone or download this repo and run `npm start` in the project directory after server initializing.
 
 ## Technologies
-- HTML
-- SASS
+- React, React Router, Redux Toolkit, Redux-thunks
+- react-hook-form, react-google-charts, promethee, zodiac-ts
 - TypeScript
-- React, Redux Toolkit, Redux-thunks
+- SASS, MUI
+- HTML
+
