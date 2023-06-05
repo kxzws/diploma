@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import Loading from '../Loading/Loading';
 import './NotFound.scss';
 
 const NotFound = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setTimeout(() => navigate('/list'), 1500);
+    setTimeout(() => navigate('/list'), 700);
   }, [navigate]);
 
   return (
@@ -15,6 +16,7 @@ const NotFound = () => {
       <h2>404</h2>
       <p>Страница не найдена</p>
       <p>Вы будете автоматически перенаправлены очень скоро</p>
+      <Loading />
     </section>
   );
 };

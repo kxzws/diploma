@@ -22,9 +22,11 @@ const Admin = () => {
   const addForm = useForm<IAdminAddFormData>();
   const removeForm = useForm<IAdminRemoveFormData>();
 
-  const { cards, search, preserveNum, sortType } = useTypedSelector((state) => state.cards);
+  const { cards, favourites, search, preserveNum, sortType } = useTypedSelector(
+    (state) => state.cards
+  );
 
-  const { changePreserve, clearFavourites } = cardsSlice.actions;
+  const { changePreserve, removeFavourite, clearFavourites } = cardsSlice.actions;
   const dispatch = useAppDispatch();
 
   const [isCompleteAdd, setIsCompleteAdd] = useState<boolean>(false);
@@ -128,6 +130,9 @@ const Admin = () => {
     if (response === 'error') {
       console.log('error');
     } else {
+      const birdCard = favourites.find((fav) => fav.num === speciesId);
+      if (birdCard) dispatch(removeFavourite(birdCard));
+
       toggleCompleteRemove();
     }
   };
